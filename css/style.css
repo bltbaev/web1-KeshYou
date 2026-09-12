@@ -1,38 +1,40 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Georgia', 'Times New Roman', serif;
-    background-color: #f7f0e6; 
+    background-color: #f7f0e6;
     color: #2b231f;
     margin: 0;
     padding: 0;
     line-height: 1.6;
 }
-
-h1, h2, h3, h4 {
+a {
+    text-decoration: none;
+}
+h1,
+h2,
+h3,
+h4 {
     font-weight: bold;
     color: #2b231f;
     margin-bottom: 15px;
     text-align: center;
 }
-
-#main-header h1 {
+h1 {
     font-size: 42px;
-    letter-spacing: 1px;
-    margin-bottom: 20px;
 }
-
 h2 {
     font-size: 32px;
 }
-
 h3 {
     font-size: 26px;
 }
-
 h4 {
     font-size: 20px;
     text-align: left;
 }
-
 p {
     margin-bottom: 15px;
 }
@@ -49,11 +51,64 @@ p {
 
 #main-header {
     background-color: #f3e9dc;
-    padding: 25px 0;
+    padding: 20px 0;
     border-bottom: 1px solid #e2d5c3;
-    text-align: center;
+}
+.header-content {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #2b231f;
+}
+.logo {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background-color: #2b231f;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+.logo-link:hover .logo {
+    background-color: #c06038;
+}
+.site-name {
+    font-size: 27px;
+    font-weight: bold;
+}
+.about-link {
+    color: #52433b;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 9px 20px;
+    border-radius: 20px;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+.about-link:hover {
+    background-color: #c06038;
+    color: #ffffff;
 }
 
+#main-header h1 {
+    font-size: 42px;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
 .nav-menu ul {
     list-style: none;
     padding: 0;
@@ -63,7 +118,6 @@ p {
     gap: 25px;
     flex-wrap: wrap;
 }
-
 .nav-menu a {
     color: #52433b;
     text-decoration: none;
@@ -74,11 +128,76 @@ p {
     border-radius: 20px;
     transition: all 0.3s ease;
 }
-
 .nav-menu a:hover,
 .nav-menu a.active {
-    background-color: #c06038; 
+    background-color: #c06038;
     color: #ffffff;
+}
+
+.hero {
+    width: 90%;
+    max-width: 900px;
+    margin: 85px auto 45px;
+    text-align: center;
+}
+.hero h1 {
+    font-size: 48px;
+    font-weight: normal;
+    margin: 0 0 20px;
+    color: #2b231f;
+}
+.hero p {
+    max-width: 700px;
+    margin: 0 auto;
+    color: #806f63;
+    font-size: 20px;
+}
+
+.categories {
+    width: 90%;
+    max-width: 1100px;
+    margin: 55px auto 110px;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: 22px;
+    flex-wrap: nowrap;
+}
+.category-box {
+    flex: 1;
+    height: 190px;
+    background-color: #ffffff;
+    border: 1px solid #ebdccb;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #2b231f;
+   
+    transition:
+        background-color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+.category-box:hover {
+    background-color: #fdfbf7;
+    border-color: #c06038;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.06);
+}
+.category-box h2 {
+    margin: 0 0 10px;
+    font-size: 28px;
+font-weight: normal;
+    color: #2b231f;
+}
+.category-box p {
+    margin: 0;
+    color: #806f63;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 14px;
 }
 
 .recipe-card {
@@ -87,9 +206,8 @@ p {
     border-radius: 10px;
     padding: 25px;
     margin-bottom: 30px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
 }
-
 .recipe-img {
     width: 100%;
     max-width: 600px;
@@ -99,8 +217,17 @@ p {
     display: block;
     margin: 15px auto;
 }
-
-.ingredients-list, .steps-list {
+.profile-img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #c06038;
+    display: block;
+    margin: 10px auto;
+}
+.ingredients-list,
+.steps-list {
     padding-left: 20px;
     font-size: 17px;
 }
@@ -108,38 +235,278 @@ p {
 .table-section {
     margin-top: 40px;
 }
-
 .data-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
     background-color: #ffffff;
 }
-
-.data-table th, 
+.data-table th,
 .data-table td {
     padding: 14px 18px;
     text-align: left;
     border-bottom: 1px solid #ede3d5;
     font-size: 16px;
 }
-
 .data-table th {
     background-color: #f3e9dc;
     color: #2b231f;
     font-weight: bold;
 }
-
 .data-table tr:hover {
     background-color: #faf5ee;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #d8c8b4;
+    border-radius: 6px;
+    background-color: #faf7f2;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #c06038;
+    outline: none;
+    background-color: #ffffff;
+}
+.btn-submit {
+    background-color: #c06038;
+    color: #ffffff;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease;
+}
+.btn-submit:hover {
+    background-color: #a44d28;
+}
+
+.about-section {
+    width: 90%;
+    max-width: 1150px;
+    margin: 60px auto 90px;
+}
+.about-intro {
+    text-align: center;
+    max-width: 750px;
+    margin: 0 auto 55px;
+}
+.small-title {
+    color: #c06038;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+.about-intro h1 {
+    font-size: 48px;
+    font-weight: normal;
+    margin: 5px 0 20px;
+    color: #2b231f;
+}
+.about-intro > p:last-child {
+    color: #806f63;
+    font-size: 18px;
+}
+
+.developers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-bottom: 55px;
+}
+.developer-card {
+    background-color: #ffffff;
+    border: 1px solid #ebdccb;
+    border-radius: 12px;
+    padding: 30px 25px;
+    min-height: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+    transition:
+        background-color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+.developer-card:hover {
+    background-color: #fdfbf7;
+    border-color: #c06038;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+}
+
+.developer-photo {
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #c06038;
+    display: block;
+    margin-bottom: 22px;
+}
+.developer-info h2 {
+    font-size: 25px;
+    font-weight: normal;
+    margin: 0 0 5px;
+    color: #2b231f;
+}
+.developer-role {
+    color: #806f63;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 15px;
+    margin: 0 0 20px;
+}
+
+.developer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.developer-contact a {
+    color: #c06038;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+.developer-contact a:hover {
+    color: #a44d28;
+    text-decoration: underline;
+}
+
+.help-center {
+    background-color: #ffffff;
+    border: 1px solid #ebdccb;
+    border-radius: 12px;
+    padding: 40px;
+    max-width: 750px;
+    margin: 0 auto 40px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+}
+.help-center h2 {
+    font-size: 32px;
+    font-weight: normal;
+    margin: 5px 0 10px;
+    color: #2b231f;
+}
+.help-center p:not(.small-title) {
+    color: #806f63;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+.help-number,
+.help-email {
+    display: block;
+    color: #c06038;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 17px;
+    font-weight: bold;
+    margin: 8px 0;
+}
+.help-number:hover,
+.help-email:hover {
+    color: #a44d28;
+    text-decoration: underline;
+}
+
+.back-home {
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: #c06038;
+    color: #ffffff;
+    font-family: 'Segoe UI', sans-serif;
+    transition: background-color 0.3s ease;
+}
+.back-home:hover {
+    background-color: #a44d28;
 }
 
 footer {
     background-color: #f3e9dc;
     color: #52433b;
     text-align: center;
-    padding: 20px 0;
+    padding: 25px;
     margin-top: 50px;
     border-top: 1px solid #e2d5c3;
     font-size: 15px;
+}
+
+@media (max-width: 850px) {
+    .developers {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .developer-card {
+        min-height: 400px;
+    }
+}
+@media (max-width: 800px) {
+    .categories {
+        flex-wrap: wrap;
+    }
+    .category-box {
+        flex: 1 1 45%;
+    }
+    .hero h1 {
+        font-size: 36px;
+    }
+    .site-name {
+        font-size: 22px;
+    }
+}
+@media (max-width: 600px) {
+    .about-intro h1 {
+        font-size: 38px;
+    }
+    .about-intro > p:last-child {
+        font-size: 16px;
+    }
+    .developer-photo {
+        width: 160px;
+        height: 160px;
+    }
+    .help-center {
+        padding: 30px 20px;
+    }
+}
+@media (max-width: 500px) {
+    .header-content {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .categories {
+        flex-direction: column;
+    }
+    .category-box {
+        width: 100%;
+    }
+    .hero {
+        margin-top: 55px;
+    }
 }
