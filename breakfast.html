@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Breakfast Recipes — Simple Receipes</title>
+    <title>Breakfast Recipes — Simple Recipes</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="images/pizza.png" type="image/x-icon">
 
@@ -11,9 +11,14 @@
 <body>
 
     <header id="main-header">
-        <h1>Simple Recipes</h1>
-        <nav class="nav-menu">
-            <ul>
+        <a href="index.html" class="logo-link">
+            <div class="logo">SR</div>
+            <span class="site-name">Simple Recipes</span>
+        </a>
+
+        <input type="checkbox" id="menu-checkbox" class="menu-checkbox">
+        <nav class="nav-menu" id="nav-menu">
+            <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="breakfast.html" class="active">Breakfast</a></li>
@@ -22,7 +27,14 @@
                 <li><a href="dessert.html">Desserts</a></li>
             </ul>
         </nav>
+
+        <label for="menu-checkbox" class="menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
     </header>
+
 
     <main class="container">
         <h2>Delicious and Quick Breakfasts</h2>
@@ -87,4 +99,4 @@
     </footer>
 
 </body>
-</html> 
+</html>

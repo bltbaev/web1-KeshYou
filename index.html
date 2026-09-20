@@ -11,30 +11,28 @@
 <body>
 
 <header id="main-header">
+    <a href="index.html" class="logo-link">
+        <div class="logo">SR</div>
+        <span class="site-name">Simple Recipes</span>
+    </a>
 
-    <div class="header-content">
+    <input type="checkbox" id="menu-checkbox" class="menu-checkbox">
+    <nav class="nav-menu" id="nav-menu">
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="breakfast.html">Breakfast</a></li>
+            <li><a href="lunch.html">Lunch</a></li>
+            <li><a href="dinner.html">Dinner</a></li>
+            <li><a href="dessert.html">Desserts</a></li>
+        </ul>
+    </nav>
 
-        <a href="about.html" class="logo-link">
-            <div class="logo">SR</div>
-        </a>
-
-        <details class="menu">
-            <summary class="menu-button">
-                <span></span>
-                <span></span>
-                <span></span>
-            </summary>
-
-            <nav class="dropdown-menu">
-                <a href="breakfast.html">Breakfast</a>
-                <a href="lunch.html">Lunch</a>
-                <a href="dinner.html">Dinner</a>
-                <a href="dessert.html">Desserts</a>
-            </nav>
-        </details>
-
-    </div>
-
+    <label for="menu-checkbox" class="menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
 </header>
 
 <main>
@@ -52,6 +50,52 @@
             <img src="images/kitchen.jpg" alt="Delicious food">
 
             <img src="images/kicthen2.jpg" alt="Delicious food">
+
+        </div>
+
+    </section>
+
+    <section class="cards-section">
+
+        <h2>Choose a Meal</h2>
+
+        <div class="card-row">
+
+            <article class="food-card">
+                <img src="https://avatars.dzeninfra.ru/get-zen_doc/8225917/pub_63f5fe0c5b2bea22b7c1d975_63f5fe29593b986e4c30770b/scale_1200" alt="Fluffy pancakes" class="food-card-img">
+                <div class="food-card-body">
+                    <h3>Breakfast</h3>
+                    <p>Fluffy kefir pancakes and other quick ideas to start your morning.</p>
+                    <a href="breakfast.html" class="card-btn">Breakfast recipes</a>
+                </div>
+            </article>
+
+            <article class="food-card">
+                <img src="https://hoff.ru/upload/medialibrary/b45/nvu3fs2bd85awuwt2zaiy0bbyhm2kcsp.jpg" alt="Borscht with fresh herbs" class="food-card-img">
+                <div class="food-card-body">
+                    <h3>Lunch</h3>
+                    <p>Hearty classics like borscht that the whole family will enjoy.</p>
+                    <a href="lunch.html" class="card-btn">Lunch recipes</a>
+                </div>
+            </article>
+
+            <article class="food-card">
+                <img src="images/Besh.png" alt="Beshbarmak" class="food-card-img">
+                <div class="food-card-body">
+                    <h3>Dinner</h3>
+                    <p>Traditional beshbarmak for the evenings when everyone gathers at the table.</p>
+                    <a href="dinner.html" class="card-btn">Dinner recipes</a>
+                </div>
+            </article>
+
+            <article class="food-card">
+                <img src="images/cake.png" alt="Cheesecake" class="food-card-img">
+                <div class="food-card-body">
+                    <h3>Desserts</h3>
+                    <p>San Sebastian cheesecake, just right for tea after dinner.</p>
+                    <a href="dessert.html" class="card-btn">Dessert recipes</a>
+                </div>
+            </article>
 
         </div>
 

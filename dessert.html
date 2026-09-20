@@ -10,18 +10,30 @@
 </head>
 <body>
   <header id="main-header">
-    <h1>Simple Recipes</h1>
-      <nav class="nav-menu">
-        <ul>                
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="breakfast.html">Breakfast</a></li>
-          <li><a href="lunch.html">Lunch</a></li>
-          <li><a href="dinner.html">Dinner</a></li>
-          <li><a href="dessert.html" class="active">Desserts</a></li>
-        </ul>
-      </nav>
+    <a href="index.html" class="logo-link">
+      <div class="logo">SR</div>
+      <span class="site-name">Simple Recipes</span>
+    </a>
+
+    <input type="checkbox" id="menu-checkbox" class="menu-checkbox">
+    <nav class="nav-menu" id="nav-menu">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="breakfast.html">Breakfast</a></li>
+        <li><a href="lunch.html">Lunch</a></li>
+        <li><a href="dinner.html">Dinner</a></li>
+        <li><a href="dessert.html" class="active">Desserts</a></li>
+      </ul>
+    </nav>
+
+    <label for="menu-checkbox" class="menu-toggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
   </header>
+
   <main class="container">
     <h2>Just the thing for tea after a hearty dinner</h2>
     <article class="recipe-card">
@@ -50,5 +62,6 @@
   <footer>
         <p>Developer Team: Zangar, Iliyas, Bekarys</p>
     </footer>
+
 </body>
 </html>

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,24 +7,31 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="images/pizza.png" type="image/x-icon">
 </head>
-
 <body>
 
 <header id="main-header">
+    <a href="index.html" class="logo-link">
+        <div class="logo">SR</div>
+        <span class="site-name">Simple Recipes</span>
+    </a>
 
-    <div class="header-content">
+    <input type="checkbox" id="menu-checkbox" class="menu-checkbox">
+    <nav class="nav-menu" id="nav-menu">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html" class="active">About Us</a></li>
+            <li><a href="breakfast.html">Breakfast</a></li>
+            <li><a href="lunch.html">Lunch</a></li>
+            <li><a href="dinner.html">Dinner</a></li>
+            <li><a href="dessert.html">Desserts</a></li>
+        </ul>
+    </nav>
 
-        <a href="about.html" class="logo-link">
-            <div class="logo">SR</div>
-            <span class="site-name">Simple Recipes</span>
-        </a>
-
-        <a href="index.html" class="about-link">
-            Home
-        </a>
-
-    </div>
-
+    <label for="menu-checkbox" class="menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
 </header>
 
 
