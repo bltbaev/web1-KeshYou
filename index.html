@@ -10,102 +10,148 @@
 
 <body>
 
-<header id="main-header">
-    <a href="index.html" class="logo-link">
-        <div class="logo">SR</div>
-        <span class="site-name">Simple Recipes</span>
-    </a>
+<div class="page-grid">
+    <header id="main-header">
+        <a href="index.html" class="logo-link">
+            <div class="logo">SR</div>
+            <span class="site-name">Simple Recipes</span>
+        </a>
 
-    <input type="checkbox" id="menu-checkbox" class="menu-checkbox">
-    <nav class="nav-menu" id="nav-menu">
-        <ul class="nav-links">
+        <input type="checkbox" id="menu-checkbox" class="menu-checkbox">
+        <nav class="nav-menu" id="nav-menu">
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="breakfast.html">Breakfast</a></li>
+                <li><a href="lunch.html">Lunch</a></li>
+                <li><a href="dinner.html">Dinner</a></li>
+                <li><a href="dessert.html">Desserts</a></li>
+            </ul>
+        </nav>
+
+        <label for="menu-checkbox" class="menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+    </header>
+
+    <aside class="sidebar">
+        <h3>Categories</h3>
+        <ul class="sidebar-links">
             <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
             <li><a href="breakfast.html">Breakfast</a></li>
             <li><a href="lunch.html">Lunch</a></li>
             <li><a href="dinner.html">Dinner</a></li>
             <li><a href="dessert.html">Desserts</a></li>
+            <li><a href="about.html">About Us</a></li>
         </ul>
-    </nav>
-
-    <label for="menu-checkbox" class="menu-toggle" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </label>
-</header>
-
-<main>
-
-    <section class="hero">
-
-        <h1>Welcome to Simple Recipes</h1>
-
-        <p>
-            Discover simple and delicious recipes for every moment.
-        </p>
-
-        <div class="welcome-images">
-
-            <img src="images/kitchen.jpg" alt="Delicious food">
-
-            <img src="images/kicthen2.jpg" alt="Delicious food">
-
+        <div class="sidebar-tip">
+            <h4>Chef's Tip</h4>
+            <p>Always use fresh ingredients for the best flavor in your meals!</p>
         </div>
+    </aside>
 
-    </section>
+    <main class="container">
+        <section class="hero">
+            <h1>Welcome to Simple Recipes</h1>
+            <p>Discover simple and delicious recipes for every moment.</p>
+            <div class="welcome-images">
+                <img src="images/kitchen.jpg" alt="Delicious food">
+                <img src="images/kicthen2.jpg" alt="Delicious food">
+            </div>
+        </section>
+        
+        <section class="cards-section">
+            <h2>Choose a Meal</h2>
+            <div class="card-row">
+                <article class="food-card">
+                    <img src="https://avatars.dzeninfra.ru/get-zen_doc/8225917/pub_63f5fe0c5b2bea22b7c1d975_63f5fe29593b986e4c30770b/scale_1200" alt="Fluffy pancakes" class="food-card-img">
+                    <div class="food-card-body">
+                        <h3>Breakfast</h3>
+                        <p>Fluffy kefir pancakes and other quick ideas to start your morning.</p>
+                        <a href="breakfast.html" class="card-btn">Breakfast recipes</a>
+                    </div>
+                </article>
 
-    <section class="cards-section">
+                <article class="food-card">
+                    <img src="https://hoff.ru/upload/medialibrary/b45/nvu3fs2bd85awuwt2zaiy0bbyhm2kcsp.jpg" alt="Borscht with fresh herbs" class="food-card-img">
+                    <div class="food-card-body">
+                        <h3>Lunch</h3>
+                        <p>Hearty classics like borscht that the whole family will enjoy.</p>
+                        <a href="lunch.html" class="card-btn">Lunch recipes</a>
+                    </div>
+                </article>
 
-        <h2>Choose a Meal</h2>
+                <article class="food-card">
+                    <img src="images/Besh.png" alt="Beshbarmak" class="food-card-img">
+                    <div class="food-card-body">
+                        <h3>Dinner</h3>
+                        <p>Traditional beshbarmak for the evenings when everyone gathers at the table.</p>
+                        <a href="dinner.html" class="card-btn">Dinner recipes</a>
+                    </div>
+                </article>
 
-        <div class="card-row">
+                <article class="food-card">
+                    <img src="images/cake.png" alt="Cheesecake" class="food-card-img">
+                    <div class="food-card-body">
+                        <h3>Desserts</h3>
+                        <p>San Sebastian cheesecake, just right for tea after dinner.</p>
+                        <a href="dessert.html" class="card-btn">Dessert recipes</a>
+                    </div>
+                </article>
+            </div>
+        </section>
 
-            <article class="food-card">
-                <img src="https://avatars.dzeninfra.ru/get-zen_doc/8225917/pub_63f5fe0c5b2bea22b7c1d975_63f5fe29593b986e4c30770b/scale_1200" alt="Fluffy pancakes" class="food-card-img">
-                <div class="food-card-body">
-                    <h3>Breakfast</h3>
-                    <p>Fluffy kefir pancakes and other quick ideas to start your morning.</p>
-                    <a href="breakfast.html" class="card-btn">Breakfast recipes</a>
+        <section class="gallery-section">
+            <h2>Recipe Photo Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://avatars.dzeninfra.ru/get-zen_doc/8225917/pub_63f5fe0c5b2bea22b7c1d975_63f5fe29593b986e4c30770b/scale_1200" alt="Pancakes">
+                    <div class="gallery-overlay"><span>Fluffy Pancakes</span></div>
                 </div>
-            </article>
-
-            <article class="food-card">
-                <img src="https://hoff.ru/upload/medialibrary/b45/nvu3fs2bd85awuwt2zaiy0bbyhm2kcsp.jpg" alt="Borscht with fresh herbs" class="food-card-img">
-                <div class="food-card-body">
-                    <h3>Lunch</h3>
-                    <p>Hearty classics like borscht that the whole family will enjoy.</p>
-                    <a href="lunch.html" class="card-btn">Lunch recipes</a>
+                <div class="gallery-item">
+                    <img src="https://hoff.ru/upload/medialibrary/b45/nvu3fs2bd85awuwt2zaiy0bbyhm2kcsp.jpg" alt="Borscht">
+                    <div class="gallery-overlay"><span>Traditional Borscht</span></div>
                 </div>
-            </article>
-
-            <article class="food-card">
-                <img src="images/Besh.png" alt="Beshbarmak" class="food-card-img">
-                <div class="food-card-body">
-                    <h3>Dinner</h3>
-                    <p>Traditional beshbarmak for the evenings when everyone gathers at the table.</p>
-                    <a href="dinner.html" class="card-btn">Dinner recipes</a>
+                <div class="gallery-item">
+                    <img src="images/Besh.png" alt="Beshbarmak">
+                    <div class="gallery-overlay"><span>Kazakh Beshbarmak</span></div>
                 </div>
-            </article>
-
-            <article class="food-card">
-                <img src="images/cake.png" alt="Cheesecake" class="food-card-img">
-                <div class="food-card-body">
-                    <h3>Desserts</h3>
-                    <p>San Sebastian cheesecake, just right for tea after dinner.</p>
-                    <a href="dessert.html" class="card-btn">Dessert recipes</a>
+                <div class="gallery-item">
+                    <img src="images/cake.png" alt="Cheesecake">
+                    <div class="gallery-overlay"><span>San Sebastian Cheesecake</span></div>
                 </div>
-            </article>
+                <div class="gallery-item">
+                    <img src="images/steak.jpg" alt="Steak">
+                    <div class="gallery-overlay"><span>Delicious Meal</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/semga.jpg" alt="Healthy food">
+                    <div class="gallery-overlay"><span>Healthy food</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/lasagna.jpg" alt="Chefs lasagna">
+                    <div class="gallery-overlay"><span>Chefs lasagna</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/krevetki.jpg" alt="Seafood">
+                    <div class="gallery-overlay"><span>Seafood</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/diet.jpg" alt="Diet Meal">
+                    <div class="gallery-overlay"><span>Diet Meal</span></div>
+                </div>
+            </div>
+        </section>
 
-        </div>
+    </main>
 
-    </section>
+    <footer>
+        Developer Team: Zangar, Iliyas, Bekarys
+    </footer>
 
-</main>
-
-<footer>
-    Developer Team: Zangar, Iliyas, Bekarys
-</footer>
+</div>
 
 </body>
 </html>
