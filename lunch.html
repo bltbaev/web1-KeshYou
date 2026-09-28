@@ -1,83 +1,230 @@
-<!DOCTYPE html>
+a<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lunch Recipes - Simple Recipes</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="images/pizza.png" type="image/x-icon">
 
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
+
 <div class="page-grid">
+
+    <!-- TASK 5: Bootstrap Navigation Bar -->
     <header id="main-header">
+
         <a href="index.html" class="logo-link">
             <div class="logo">SR</div>
             <span class="site-name">Simple Recipes</span>
         </a>
 
-        <input type="checkbox" id="menu-checkbox" class="menu-checkbox">
-        <nav class="nav-menu" id="nav-menu">
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="breakfast.html">Breakfast</a></li>
-                <li><a href="lunch.html" class="active">Lunch</a></li>
-                <li><a href="dinner.html">Dinner</a></li>
-                <li><a href="dessert.html">Desserts</a></li>
-            </ul>
+        <nav class="navbar navbar-expand-lg p-0" aria-label="Main navigation">
+
+            <div class="container-fluid p-0">
+
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#siteNav"
+                        aria-controls="siteNav"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+
+                    <span class="navbar-toggler-icon"></span>
+
+                </button>
+
+                <div class="collapse navbar-collapse" id="siteNav">
+
+                    <ul class="navbar-nav ms-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">About Us</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="breakfast.html">Breakfast</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" href="lunch.html">Lunch</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="dinner.html">Dinner</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="dessert.html">Desserts</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
         </nav>
 
-        <label for="menu-checkbox" class="menu-toggle" aria-label="Toggle menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </label>
     </header>
 
+
     <aside class="sidebar">
+
         <h3>Categories</h3>
+
         <ul class="sidebar-links">
+
             <li><a href="index.html">Home</a></li>
             <li><a href="breakfast.html">Breakfast</a></li>
             <li><a href="lunch.html" class="active">Lunch</a></li>
             <li><a href="dinner.html">Dinner</a></li>
             <li><a href="dessert.html">Desserts</a></li>
             <li><a href="about.html">About Us</a></li>
+
         </ul>
+
         <div class="sidebar-tip">
+
             <h4>Chef's Tip</h4>
-            <p>Always use fresh ingredients for the best flavor in your meals!</p>
+
+            <p>
+                Always use fresh ingredients for the best flavor in your meals!
+            </p>
+
         </div>
+
     </aside>
 
+
     <main class="container">
-        <h2>Hearty Lunches for the Whole Family</h2>
 
-        <article class="recipe-card">
-            <h3>Classic Borscht</h3>
-            <img src="https://hoff.ru/upload/medialibrary/b45/nvu3fs2bd85awuwt2zaiy0bbyhm2kcsp.jpg" alt="Borscht with fresh herbs" class="recipe-img">
-            
-            <h4>Ingredients:</h4>
-            <ul class="ingredients-list">
-                <li>Beef - 400g</li>
-                <li>Beetroot - 1 pc</li>
-                <li>Cabbage - 200g</li>
-                <li>Potatoes - 3 pcs</li>
-            </ul>
+        <!-- TASK 3: Bootstrap Grid Layout -->
 
-            <h4>Instructions:</h4>
-            <ol class="steps-list">
-                <li>Simmer the beef to make a rich broth for about 1.5 hours.</li>
-                <li>Chop the vegetables and sauté the beetroot, onion, and carrots in a pan.</li>
-                <li>Add potatoes and cabbage to the broth, stir in the sautéed vegetables, and cook until tender.</li>
-            </ol>
+        <div class="container-fluid px-0">
+
+            <div class="row g-4">
+
+                <div class="col-lg-6 col-md-6 col-12">
+
+                    <h2>
+                        Hearty Lunches for the Whole Family
+                    </h2>
+
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-12">
+
+                    <p class="mt-lg-4 px-sm-2">
+                        Simple recipes with clear ingredients and instructions.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TASK 8: Bootstrap Card -->
+
+        <article class="recipe-card card mt-4">
+
+            <div class="card-body">
+
+                <h3 class="card-title">
+                    Classic Borscht
+                </h3>
+
+                <img
+                    src="https://hoff.ru/upload/medialibrary/b45/nvu3fs2bd85awuwt2zaiy0bbyhm2kcsp.jpg"
+                    alt="Borscht with fresh herbs"
+                    class="recipe-img card-img-top"
+                >
+
+
+                <div class="row mt-4">
+
+                    <div class="col-lg-6 col-md-6 col-12">
+
+                        <h4>Ingredients:</h4>
+
+                        <ul class="ingredients-list">
+
+                            <li>Beef - 400g</li>
+                            <li>Beetroot - 1 pc</li>
+                            <li>Cabbage - 200g</li>
+                            <li>Potatoes - 3 pcs</li>
+
+                        </ul>
+
+                    </div>
+
+
+                    <div class="col-lg-6 col-md-6 col-12">
+
+                        <h4>Instructions:</h4>
+
+                        <ol class="steps-list">
+
+                            <li>
+                                Simmer the beef to make a rich broth for about 1.5 hours.
+                            </li>
+
+                            <li>
+                                Chop the vegetables and sauté the beetroot,
+                                onion, and carrots in a pan.
+                            </li>
+
+                            <li>
+                                Add potatoes and cabbage to the broth,
+                                stir in the sautéed vegetables,
+                                and cook until tender.
+                            </li>
+
+                        </ol>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TASK 6: Bootstrap Button -->
+
+                <a href="index.html"
+                   class="btn btn-outline-secondary mt-3">
+
+                    Back to Home
+
+                </a>
+
+            </div>
+
         </article>
+
     </main>
 
+
     <footer>
-        <p>Developer Team: Zangar, Iliyas, Bekarys</p>
+
+        <p class="m-0">
+            Developer Team: Zangar, Iliyas, Bekarys
+        </p>
+
     </footer>
+
 </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

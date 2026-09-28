@@ -4,154 +4,443 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Recipes</title>
+
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="images/pizza.png" type="image/x-icon">
 </head>
 
 <body>
 
 <div class="page-grid">
+
+    <!-- TASK 5: BOOTSTRAP NAVBAR -->
     <header id="main-header">
+
         <a href="index.html" class="logo-link">
             <div class="logo">SR</div>
             <span class="site-name">Simple Recipes</span>
         </a>
 
-        <input type="checkbox" id="menu-checkbox" class="menu-checkbox">
-        <nav class="nav-menu" id="nav-menu">
-            <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="breakfast.html">Breakfast</a></li>
-                <li><a href="lunch.html">Lunch</a></li>
-                <li><a href="dinner.html">Dinner</a></li>
-                <li><a href="dessert.html">Desserts</a></li>
-            </ul>
+        <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
+
+            <div class="container-fluid">
+
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#siteNav"
+                        aria-controls="siteNav"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+
+                    <span class="navbar-toggler-icon"></span>
+
+                </button>
+
+                <div class="collapse navbar-collapse" id="siteNav">
+
+                    <ul class="navbar-nav ms-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">About Us</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="breakfast.html">Breakfast</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="lunch.html">Lunch</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="dinner.html">Dinner</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="dessert.html">Desserts</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
         </nav>
 
-        <label for="menu-checkbox" class="menu-toggle" aria-label="Toggle menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </label>
     </header>
 
+
     <aside class="sidebar">
+
         <h3>Categories</h3>
+
         <ul class="sidebar-links">
+
             <li><a href="index.html" class="active">Home</a></li>
             <li><a href="breakfast.html">Breakfast</a></li>
             <li><a href="lunch.html">Lunch</a></li>
             <li><a href="dinner.html">Dinner</a></li>
             <li><a href="dessert.html">Desserts</a></li>
             <li><a href="about.html">About Us</a></li>
+
         </ul>
+
         <div class="sidebar-tip">
             <h4>Chef's Tip</h4>
             <p>Always use fresh ingredients for the best flavor in your meals!</p>
         </div>
+
     </aside>
 
+
     <main class="container">
+
+        <!-- TASK 1: RESPONSIVE TYPOGRAPHY -->
         <section class="hero">
+
             <h1>Welcome to Simple Recipes</h1>
-            <p>Discover simple and delicious recipes for every moment.</p>
-            <div class="welcome-images">
-                <img src="images/kitchen.jpg" alt="Delicious food">
-                <img src="images/kicthen2.jpg" alt="Delicious food">
+
+            <p class="mb-4">
+                Discover simple and delicious recipes for every moment.
+            </p>
+
+            <!-- TASK 3: BOOTSTRAP GRID -->
+            <div class="row g-3">
+
+                <div class="col-lg-6 col-md-6 col-12">
+                    <img src="images/kitchen.jpg"
+                         alt="Kitchen and food"
+                         class="img-fluid rounded-3">
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-12">
+                    <img src="images/kicthen2.jpg"
+                         alt="Cooking ingredients"
+                         class="img-fluid rounded-3">
+                </div>
+
             </div>
+
         </section>
-        
+
+
+        <!-- TASK 2 + TASK 8 -->
         <section class="cards-section">
-            <h2>Choose a Meal</h2>
-            <div class="card-row">
-                <article class="food-card">
-                    <img src="https://avatars.dzeninfra.ru/get-zen_doc/8225917/pub_63f5fe0c5b2bea22b7c1d975_63f5fe29593b986e4c30770b/scale_1200" alt="Fluffy pancakes" class="food-card-img">
+
+            <h2 class="my-4">Choose a Meal</h2>
+
+            <!-- TASK 2: CSS MEDIA QUERY CARD GROUP -->
+            <!-- TASK 8: BOOTSTRAP CARDS -->
+
+            <div class="row g-4">
+
+                <article class="food-card col-lg-3 col-md-6 col-12">
+
+                    <img src="https://avatars.dzeninfra.ru/get-zen_doc/8225917/pub_63f5fe0c5b2bea22b7c1d975_63f5fe29593b986e4c30770b/scale_1200"
+                         alt="Fluffy pancakes"
+                         class="food-card-img">
+
                     <div class="food-card-body">
+
                         <h3>Breakfast</h3>
-                        <p>Fluffy kefir pancakes and other quick ideas to start your morning.</p>
-                        <a href="breakfast.html" class="card-btn">Breakfast recipes</a>
+
+                        <p>
+                            Fluffy kefir pancakes and other quick ideas
+                            to start your morning.
+                        </p>
+
+                        <!-- TASK 6: BOOTSTRAP BUTTON -->
+                        <a href="breakfast.html"
+                           class="btn btn-outline-secondary mt-auto">
+                            Breakfast recipes
+                        </a>
+
                     </div>
+
                 </article>
 
-                <article class="food-card">
-                    <img src="https://hoff.ru/upload/medialibrary/b45/nvu3fs2bd85awuwt2zaiy0bbyhm2kcsp.jpg" alt="Borscht with fresh herbs" class="food-card-img">
+
+                <article class="food-card col-lg-3 col-md-6 col-12">
+
+                    <img src="https://hoff.ru/upload/medialibrary/b45/nvu3fs2bd85awuwt2zaiy0bbyhm2kcsp.jpg"
+                         alt="Borscht with fresh herbs"
+                         class="food-card-img">
+
                     <div class="food-card-body">
+
                         <h3>Lunch</h3>
-                        <p>Hearty classics like borscht that the whole family will enjoy.</p>
-                        <a href="lunch.html" class="card-btn">Lunch recipes</a>
+
+                        <p>
+                            Hearty classics like borscht that the
+                            whole family will enjoy.
+                        </p>
+
+                        <a href="lunch.html"
+                           class="btn btn-outline-secondary mt-auto">
+                            Lunch recipes
+                        </a>
+
                     </div>
+
                 </article>
 
-                <article class="food-card">
-                    <img src="images/Besh.png" alt="Beshbarmak" class="food-card-img">
+
+                <article class="food-card col-lg-3 col-md-6 col-12">
+
+                    <img src="images/Besh.png"
+                         alt="Beshbarmak"
+                         class="food-card-img">
+
                     <div class="food-card-body">
+
                         <h3>Dinner</h3>
-                        <p>Traditional beshbarmak for the evenings when everyone gathers at the table.</p>
-                        <a href="dinner.html" class="card-btn">Dinner recipes</a>
+
+                        <p>
+                            Traditional beshbarmak for evenings
+                            when everyone gathers at the table.
+                        </p>
+
+                        <a href="dinner.html"
+                           class="btn btn-outline-secondary mt-auto">
+                            Dinner recipes
+                        </a>
+
                     </div>
+
                 </article>
 
-                <article class="food-card">
-                    <img src="images/cake.png" alt="Cheesecake" class="food-card-img">
+
+                <article class="food-card col-lg-3 col-md-6 col-12">
+
+                    <img src="images/cake.png"
+                         alt="Cheesecake"
+                         class="food-card-img">
+
                     <div class="food-card-body">
+
                         <h3>Desserts</h3>
-                        <p>San Sebastian cheesecake, just right for tea after dinner.</p>
-                        <a href="dessert.html" class="card-btn">Dessert recipes</a>
+
+                        <p>
+                            San Sebastian cheesecake, just right
+                            for tea after dinner.
+                        </p>
+
+                        <a href="dessert.html"
+                           class="btn btn-outline-secondary mt-auto">
+                            Dessert recipes
+                        </a>
+
                     </div>
+
                 </article>
+
             </div>
+
+
+            <!-- TASK 6: BOOTSTRAP BUTTON GROUP -->
+
+            <div class="btn-group mt-4"
+                 role="group"
+                 aria-label="Recipe categories">
+
+                <a class="btn btn-primary" href="breakfast.html">
+                    Breakfast
+                </a>
+
+                <a class="btn btn-secondary" href="lunch.html">
+                    Lunch
+                </a>
+
+                <a class="btn btn-primary" href="dinner.html">
+                    Dinner
+                </a>
+
+                <a class="btn btn-secondary" href="dessert.html">
+                    Dessert
+                </a>
+
+            </div>
+
         </section>
 
-        <section class="gallery-section">
-            <h2>Recipe Photo Gallery</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="https://avatars.dzeninfra.ru/get-zen_doc/8225917/pub_63f5fe0c5b2bea22b7c1d975_63f5fe29593b986e4c30770b/scale_1200" alt="Pancakes">
-                    <div class="gallery-overlay"><span>Fluffy Pancakes</span></div>
+
+        <!-- TASK 7: BOOTSTRAP CAROUSEL -->
+
+        <section class="gallery-section mt-5">
+
+            <h2 class="mb-4">Recipe Photo Gallery</h2>
+
+            <div id="recipeCarousel"
+                 class="carousel slide"
+                 data-bs-ride="carousel">
+
+                <!-- CAROUSEL INDICATORS -->
+
+                <div class="carousel-indicators">
+
+                    <button type="button"
+                            data-bs-target="#recipeCarousel"
+                            data-bs-slide-to="0"
+                            class="active"
+                            aria-current="true"
+                            aria-label="Slide 1"></button>
+
+                    <button type="button"
+                            data-bs-target="#recipeCarousel"
+                            data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+
+                    <button type="button"
+                            data-bs-target="#recipeCarousel"
+                            data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+
+                    <button type="button"
+                            data-bs-target="#recipeCarousel"
+                            data-bs-slide-to="3"
+                            aria-label="Slide 4"></button>
+
+                    <button type="button"
+                            data-bs-target="#recipeCarousel"
+                            data-bs-slide-to="4"
+                            aria-label="Slide 5"></button>
+
+                    <button type="button"
+                            data-bs-target="#recipeCarousel"
+                            data-bs-slide-to="5"
+                            aria-label="Slide 6"></button>
+
+                    <button type="button"
+                            data-bs-target="#recipeCarousel"
+                            data-bs-slide-to="6"
+                            aria-label="Slide 7"></button>
+
+                    <button type="button"
+                            data-bs-target="#recipeCarousel"
+                            data-bs-slide-to="7"
+                            aria-label="Slide 8"></button>
+
+                    <button type="button"
+                            data-bs-target="#recipeCarousel"
+                            data-bs-slide-to="8"
+                            aria-label="Slide 9"></button>
+
                 </div>
-                <div class="gallery-item">
-                    <img src="https://hoff.ru/upload/medialibrary/b45/nvu3fs2bd85awuwt2zaiy0bbyhm2kcsp.jpg" alt="Borscht">
-                    <div class="gallery-overlay"><span>Traditional Borscht</span></div>
+
+
+                <div class="carousel-inner rounded-3">
+
+                    <div class="carousel-item active">
+                        <img src="https://avatars.dzeninfra.ru/get-zen_doc/8225917/pub_63f5fe0c5b2bea22b7c1d975_63f5fe29593b986e4c30770b/scale_1200"
+                             class="d-block w-100 carousel-image"
+                             alt="Pancakes">
+                    </div>
+
+                    <div class="carousel-item">
+                        <img src="https://hoff.ru/upload/medialibrary/b45/nvu3fs2bd85awuwt2zaiy0bbyhm2kcsp.jpg"
+                             class="d-block w-100 carousel-image"
+                             alt="Borscht">
+                    </div>
+
+                    <div class="carousel-item">
+                        <img src="images/Besh.png"
+                             class="d-block w-100 carousel-image"
+                             alt="Beshbarmak">
+                    </div>
+
+                    <div class="carousel-item">
+                        <img src="images/cake.png"
+                             class="d-block w-100 carousel-image"
+                             alt="Cheesecake">
+                    </div>
+
+                    <div class="carousel-item">
+                        <img src="images/steak.jpg"
+                             class="d-block w-100 carousel-image"
+                             alt="Steak">
+                    </div>
+
+                    <div class="carousel-item">
+                        <img src="images/semga.jpg"
+                             class="d-block w-100 carousel-image"
+                             alt="Salmon">
+                    </div>
+
+                    <div class="carousel-item">
+                        <img src="images/lasagna.jpg"
+                             class="d-block w-100 carousel-image"
+                             alt="Lasagna">
+                    </div>
+
+                    <div class="carousel-item">
+                        <img src="images/krevetki.jpg"
+                             class="d-block w-100 carousel-image"
+                             alt="Shrimp">
+                    </div>
+
+                    <div class="carousel-item">
+                        <img src="images/diet.jpg"
+                             class="d-block w-100 carousel-image"
+                             alt="Healthy meal">
+                    </div>
+
                 </div>
-                <div class="gallery-item">
-                    <img src="images/Besh.png" alt="Beshbarmak">
-                    <div class="gallery-overlay"><span>Kazakh Beshbarmak</span></div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/cake.png" alt="Cheesecake">
-                    <div class="gallery-overlay"><span>San Sebastian Cheesecake</span></div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/steak.jpg" alt="Steak">
-                    <div class="gallery-overlay"><span>Delicious Meal</span></div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/semga.jpg" alt="Healthy food">
-                    <div class="gallery-overlay"><span>Healthy food</span></div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/lasagna.jpg" alt="Chefs lasagna">
-                    <div class="gallery-overlay"><span>Chefs lasagna</span></div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/krevetki.jpg" alt="Seafood">
-                    <div class="gallery-overlay"><span>Seafood</span></div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/diet.jpg" alt="Diet Meal">
-                    <div class="gallery-overlay"><span>Diet Meal</span></div>
-                </div>
+
+
+                <!-- CAROUSEL CONTROLS -->
+
+                <button class="carousel-control-prev"
+                        type="button"
+                        data-bs-target="#recipeCarousel"
+                        data-bs-slide="prev">
+
+                    <span class="carousel-control-prev-icon"
+                          aria-hidden="true"></span>
+
+                    <span class="visually-hidden">
+                        Previous
+                    </span>
+
+                </button>
+
+                <button class="carousel-control-next"
+                        type="button"
+                        data-bs-target="#recipeCarousel"
+                        data-bs-slide="next">
+
+                    <span class="carousel-control-next-icon"
+                          aria-hidden="true"></span>
+
+                    <span class="visually-hidden">
+                        Next
+                    </span>
+
+                </button>
+
             </div>
+
         </section>
 
     </main>
 
+
+    <!-- TASK 10: ACCESSIBILITY -->
     <footer>
-        Developer Team: Zangar, Iliyas, Bekarys
+        <p class="m-0">
+            Developer Team: Zangar, Iliyas, Bekarys
+        </p>
     </footer>
 
 </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
