@@ -666,3 +666,155 @@ body.dark-mode .sidebar-links a {
 body.dark-mode .sidebar-links a:hover {
     background: #333333;
 }
+/* ===== ASSIGNMENT 5: TASK 2 + TASK 3 (Kitchen Corner) ===== */
+
+.kitchen-section {
+    background: #fff;
+    border: 1px solid #ebdccb;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 30px 0;
+}
+
+.kitchen-section h3 {
+    margin-top: 28px;
+    font-size: 24px;
+}
+
+.day-greeting {
+    font-size: 20px;
+    color: #c06038;
+}
+
+.time-box {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.time-output {
+    font-weight: bold;
+}
+
+/* Buttons in the same terracotta style as the rest of the site */
+.kitchen-btn {
+    background: #c06038;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 20px;
+    font-family: inherit;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+}
+
+.kitchen-btn:hover {
+    background: #a24d2b;
+    transform: translateY(-2px);
+}
+
+.kitchen-btn:active {
+    transform: scale(0.95);
+}
+
+.filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.filter-btn.active {
+    background: #2b231f;
+}
+
+.recipe-count {
+    color: #806f63;
+}
+
+.recipe-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 14px;
+}
+
+.recipe-item {
+    background: #f7f0e6;
+    border: 1px solid #ebdccb;
+    border-radius: 10px;
+    padding: 16px;
+    animation: popIn 0.4s ease both;
+}
+
+.recipe-item h4 {
+    font-size: 20px;
+    margin: 0 0 6px;
+}
+
+.recipe-item p {
+    margin: 0;
+    color: #806f63;
+}
+
+.chef-form {
+    max-width: 520px;
+}
+
+.chef-message {
+    margin: 10px 0 0;
+}
+
+.chef-message.success {
+    color: #2e7d32;
+}
+
+.chef-message.error-text {
+    color: #c62828;
+}
+
+/* Animation: replayed from JavaScript by adding the "flash" class */
+.flash {
+    animation: popIn 0.4s ease both;
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Visible focus for keyboard navigation of the menu */
+#main-header .nav-link:focus-visible {
+    outline: 2px solid #c06038;
+    outline-offset: 2px;
+    border-radius: 6px;
+}
+
+/* Works together with the existing Day/Night toggle */
+body.dark-mode .kitchen-section {
+    background: #1a1a1a;
+    border-color: #333333;
+    color: #ffffff;
+}
+
+body.dark-mode .recipe-item {
+    background: #262626;
+    border-color: #333333;
+}
+
+body.dark-mode .recipe-item p,
+body.dark-mode .recipe-count {
+    color: #cccccc;
+}
+
+body.dark-mode .filter-btn.active {
+    background: #ffffff;
+    color: #000000;
+}
