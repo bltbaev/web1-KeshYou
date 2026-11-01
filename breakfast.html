@@ -12,8 +12,9 @@
 
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- jQuery (Assignment 6, Task 0) -->
+    <!-- ASSIGNMENT 6, TASK 0: jQuery from CDN -->
     <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+
 </head>
 
 <body>
@@ -34,7 +35,7 @@
 
         <div class="header-tools">
             <span id="dateTime" class="header-date"></span>
-            <button type="button" id="colorBtn" class="color-btn">Change Color</button>
+            <button type="button" id="colorBtn" class="color-btn">Dark Mode</button>
         </div>
 
         <nav class="navbar navbar-expand-lg p-0"
@@ -199,6 +200,13 @@
         </div>
 
 
+        <!-- ASSIGNMENT 6, TASK 3: SEARCH HIGHLIGHTING -->
+        <div class="page-search mt-4">
+            <input type="text" id="pageSearch" class="form-control"
+                   placeholder="Find a word in this recipe or FAQ, e.g. flour">
+            <span id="searchResult" class="search-result"></span>
+        </div>
+
         <article class="recipe-card card mt-4">
 
             <div class="card-body">
@@ -208,21 +216,18 @@
                 </h3>
 
 
-                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://avatars.dzeninfra.ru/get-zen_doc/8225917/pub_63f5fe0c5b2bea22b7c1d975_63f5fe29593b986e4c30770b/scale_1200"
+                <img src="https://avatars.dzeninfra.ru/get-zen_doc/8225917/pub_63f5fe0c5b2bea22b7c1d975_63f5fe29593b986e4c30770b/scale_1200"
                      alt="Fluffy kefir pancakes"
-                     class="recipe-img card-img-top lazy">
+                     class="recipe-img card-img-top">
 
 
                 <div class="row mt-4">
 
                     <div class="col-lg-6 col-md-6 col-12">
 
-                        <div class="copy-header">
-                            <h4>Ingredients:</h4>
-                            <button type="button" class="copy-btn" data-copy-target="#ingredientsList" data-copy-label="Ingredients" aria-label="Copy ingredients"></button>
-                        </div>
+                        <h4>Ingredients:</h4>
 
-                        <ul class="ingredients-list copy-source" id="ingredientsList">
+                        <ul class="ingredients-list">
 
                             <li>
                                 Kefir - 250 ml
@@ -259,12 +264,9 @@
 
                     <div class="col-lg-6 col-md-6 col-12">
 
-                        <div class="copy-header">
-                            <h4>Instructions:</h4>
-                            <button type="button" class="copy-btn" data-copy-target="#stepsList" data-copy-label="Instructions" aria-label="Copy instructions"></button>
-                        </div>
+                        <h4>Instructions:</h4>
 
-                        <ol class="steps-list copy-source" id="stepsList">
+                        <ol class="steps-list">
 
                             <li>
                                 Mix the kefir, eggs, sugar and salt in a bowl.

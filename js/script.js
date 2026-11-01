@@ -59,9 +59,9 @@ if (colorBtn) {
         
         // Optional: change button text depending on the current mode
         if (document.body.classList.contains("dark-mode")) {
-            colorBtn.textContent = "Day Mode";
+            colorBtn.textContent = "Light Mode";
         } else {
-            colorBtn.textContent = "Change Background";
+            colorBtn.textContent = "Dark Mode";
         }
     });
 }
@@ -92,17 +92,9 @@ function createRecipe(icon, name, category, minutes) {
 // Task 3: array of objects
 const recipes = [
     createRecipe("🥞", "Kefir Pancakes", "breakfast", 20),
-    createRecipe("🍳", "Cheese Omelette", "breakfast", 10),
-    createRecipe("🥣", "Oatmeal with Fruit", "breakfast", 15),
     createRecipe("🍲", "Borscht", "lunch", 90),
-    createRecipe("🥗", "Chicken Salad", "lunch", 25),
-    createRecipe("🍕", "Homemade Pizza", "lunch", 45),
     createRecipe("🍖", "Beshbarmak", "dinner", 150),
-    createRecipe("🥩", "Juicy Steak", "dinner", 25),
-    createRecipe("🐟", "Baked Salmon", "dinner", 30),
-    createRecipe("🍝", "Lasagna", "dinner", 70),
     createRecipe("🍰", "San Sebastian Cheesecake", "dessert", 60),
-    createRecipe("🍩", "Baursak", "dessert", 40)
 ];
 
 // ===== 2. DOM elements =====
@@ -278,12 +270,10 @@ function handleFormSubmit(event) {
             chefForm.reset();
             submitBtn.disabled = false;
             playSound("success");
-            showToast("Your question was sent to the chef!", "success");
         },
         function () {
             showFormMessage("Something went wrong. Please try again.", "error-text");
             submitBtn.disabled = false;
-            showToast("Could not send your question.", "error");
         }
     );
 }
@@ -358,292 +348,285 @@ if (chefForm && chefMessage) {
     chefForm.addEventListener("submit", handleFormSubmit);
 }
 
+// =====================================================================
+// ASSIGNMENT 6: jQuery
+// All the code below runs inside $(document).ready().
+// If an element is not on the current page, jQuery simply does nothing,
+// so this code is safe to use on every page of the site.
+// =====================================================================
 
-/* =====================================================================
-   ASSIGNMENT 6: jQUERY
-   Task 0 (setup), Task 7 (toasts), Task 8 (copy button), Task 9 (lazy loading)
-   jQuery itself is loaded from the CDN in the <head> of every page.
-   ===================================================================== */
+// TASK 0: the function runs when the HTML page is fully loaded
+$(document).ready(function () {
 
-// ===== TASK 7: Notification system (toast) =====
-// Global function, so any code on the page can call showToast("text", "success")
-function showToast(message, type, duration) {
-    type = type || "info";
-    duration = duration || 3000;
+    console.log("jQuery is ready!");
 
-    // Create the container once and reuse it
-    var $container = $("#toastContainer");
-    if ($container.length === 0) {
-        $container = $("<div>", {
-            id: "toastContainer",
-            role: "status",
-            "aria-live": "polite"
-        }).appendTo("body");
+
+    // ---------- Helper functions (used by several tasks) ----------
+
+    // Returns true when the top of an element is already visible in the window
+    function isInView($element) {
+        var elementTop = $element.offset().top;
+        var windowBottom = $(window).scrollTop() + $(window).height();
+        return elementTop < windowBottom;
     }
 
-    var icons = { success: "\u2713", error: "!", info: "i" };
-
-    var $toast = $("<div>", { "class": "toast-msg " + type });
-    $("<span>", { "class": "toast-icon", text: icons[type] || "i" }).appendTo($toast);
-    $("<span>", { "class": "toast-text", text: message }).appendTo($toast);
-    var $close = $("<button>", {
-        type: "button",
-        "class": "toast-close",
-        "aria-label": "Close notification",
-        html: "&times;"
-    }).appendTo($toast);
-
-    function removeToast() {
-        $toast.stop(true, true).fadeOut(400, function () {
+    // TASK 7: a small message in the corner that disappears by itself
+    function showToast(message) {
+        $(".toast-message").remove();
+        var $toast = $('<div class="toast-message"></div>').text(message);
+        $("body").append($toast);
+        $toast.fadeIn(300).delay(2000).fadeOut(500, function () {
             $(this).remove();
         });
     }
 
-    $close.on("click", removeToast);
 
-    // Appear with a fade, wait, then fade out and remove from the DOM
-    $toast.hide().appendTo($container).fadeIn(250).delay(duration).queue(function (next) {
-        removeToast();
-        next();
-    });
-}
+    // ---------- TASK 1: Real-time search and live filter ----------
 
-// ===== TASK 8: Copy to clipboard =====
-var copyIcon =
-    '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect>' +
-    '<path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>';
-var checkIcon =
-    '<svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="4 12 10 18 20 6"></polyline></svg>';
+    var $search = $("#recipeSearch");
+    var $suggestions = $("#suggestions");
 
-// true while the button itself triggers a copy, so the "copy" event below does not show a second toast
-var copiedByButton = false;
+    function filterRecipeCards() {
+        var keyword = $search.val().toLowerCase();
 
-// Turns the list inside .copy-source into plain text (numbers for <ol>, dashes for <ul>)
-function getSnippetText($source) {
-    var isOrdered = $source.is("ol");
-    var lines = [];
-    $source.children("li").each(function (index) {
-        var text = $(this).text().replace(/\s+/g, " ").trim();
-        lines.push((isOrdered ? (index + 1) + ". " : "- ") + text);
-    });
-    return lines.join("\n");
-}
-
-// Copies text. Uses the Clipboard API, falls back to execCommand("copy") on old browsers / http
-function copyToClipboard(text) {
-    copiedByButton = true;
-    var done = function () {
-        setTimeout(function () { copiedByButton = false; }, 100);
-    };
-
-    if (navigator.clipboard && window.isSecureContext) {
-        return navigator.clipboard.writeText(text).then(done, function (error) {
-            done();
-            throw error;
-        });
+        $(".recipe-item").hide().filter(function () {
+            var name = $(this).find("h4").text().toLowerCase();
+            return name.includes(keyword);
+        }).show();
     }
 
-    return new Promise(function (resolve, reject) {
-        var $temp = $("<textarea>").val(text)
-            .css({ position: "fixed", top: 0, left: 0, opacity: 0 })
-            .appendTo("body");
-        $temp[0].select();
-        var ok = false;
-        try {
-            ok = document.execCommand("copy");
-        } catch (error) {
-            ok = false;
-        }
-        $temp.remove();
-        done();
-        if (ok) { resolve(); } else { reject(new Error("copy failed")); }
-    });
-}
 
-// Puts the "copy" icon, label and the hidden tooltip inside every .copy-btn
-function setupCopyButtons() {
-    $(".copy-btn").each(function () {
-        $(this).html(
-            '<span class="copy-icon">' + copyIcon + '</span>' +
-            '<span class="copy-label">Copy</span>' +
-            '<span class="copy-tooltip" role="tooltip">Copied to clipboard!</span>'
-        );
-    });
-}
+    // ---------- TASK 2: Autocomplete search suggestions ----------
 
-function showCopiedState($btn) {
-    $btn.addClass("copied");
-    $btn.find(".copy-icon").html(checkIcon);          // icon -> checkmark
-    $btn.find(".copy-label").text("Copied");
-    $btn.find(".copy-tooltip").stop(true, true).fadeIn(150);
+    function showSuggestions() {
+        var keyword = $search.val().toLowerCase();
+        $suggestions.empty();
 
-    // Return to the normal state after 2 seconds
-    clearTimeout($btn.data("resetTimer"));
-    $btn.data("resetTimer", setTimeout(function () {
-        $btn.removeClass("copied");
-        $btn.find(".copy-icon").html(copyIcon);
-        $btn.find(".copy-label").text("Copy");
-        $btn.find(".copy-tooltip").fadeOut(200);
-    }, 2000));
-}
-
-// ===== TASK 9: Lazy loading images =====
-// Images have a tiny placeholder in src and the real address in data-src.
-function loadImage($img) {
-    var realSrc = $img.attr("data-src");
-    if (!realSrc) {
-        return;
-    }
-    $img.one("load error", function () {
-        $img.addClass("loaded");
-    });
-    $img.attr("src", realSrc).removeAttr("data-src");
-}
-
-// True when the image is (almost) inside the visible part of the window
-function isNearViewport($img) {
-    if (!$img.is(":visible")) {
-        return false; // hidden images (inactive carousel slides) wait until they are shown
-    }
-    var scrollTop = $(window).scrollTop();
-    var windowHeight = $(window).height();
-    var imgTop = $img.offset().top;           // distance from the top of the page
-    var imgBottom = imgTop + $img.outerHeight();
-    var margin = 200;                          // start loading 200px before it appears
-    return imgBottom > scrollTop - margin && imgTop < scrollTop + windowHeight + margin;
-}
-
-function loadVisibleImages() {
-    $("img[data-src]").each(function () {
-        if (isNearViewport($(this))) {
-            loadImage($(this));
-        }
-    });
-}
-
-// ===== jQuery ready =====
-$(document).ready(function () {
-
-    // ---------- TASK 0: setup test ----------
-    console.log("jQuery is ready!");
-
-    // ---------- TASK 9: lazy loading ----------
-    var scrollTimer = null;
-    $(window).on("scroll resize", function () {
-        if (scrollTimer) {
-            return; // run at most once every 100 ms
-        }
-        scrollTimer = setTimeout(function () {
-            scrollTimer = null;
-            loadVisibleImages();
-        }, 100);
-    });
-    loadVisibleImages(); // images that are already on screen when the page opens
-
-    // Carousel: load the next slide's image just before it slides in
-    var carousel = document.getElementById("recipeCarousel");
-    if (carousel) {
-        carousel.addEventListener("slide.bs.carousel", function (event) {
-            loadImage($(event.relatedTarget).find("img[data-src]"));
-        });
-    }
-
-    // ---------- TASK 8: copy buttons ----------
-    setupCopyButtons();
-
-    $(".copy-btn").on("click", function () {
-        var $btn = $(this);
-        var $source = $($btn.data("copyTarget"));
-        var title = $btn.closest(".card-body").find(".card-title").first().text().trim();
-        var label = $btn.data("copyLabel") || "Text";
-        var text = (title ? title + " - " + label + "\n" : "") + getSnippetText($source);
-
-        copyToClipboard(text).then(function () {
-            showCopiedState($btn);
-            showToast(label + " copied to clipboard!", "success");
-        }, function () {
-            showToast("Could not copy. Please select the text and press Ctrl+C.", "error");
-        });
-    });
-
-    // The "copy" event: also notify when the user copies a snippet by hand (Ctrl+C / right click)
-    $(document).on("copy", function () {
-        if (copiedByButton) {
+        if (keyword === "") {
+            $suggestions.hide();
             return;
         }
-        var selection = window.getSelection();
-        if (selection && selection.toString() !== "" &&
-            $(selection.anchorNode).closest(".copy-source").length > 0) {
-            showToast("Copied to clipboard!", "success");
+
+        // "recipes" is the array of recipe objects from Assignment 5 (top of this file)
+        var matches = recipes.filter(function (recipe) {
+            return recipe.name.toLowerCase().includes(keyword);
+        });
+
+        $.each(matches, function (index, recipe) {
+            $("<li></li>")
+                .text(recipe.icon + " " + recipe.name)
+                .attr("data-name", recipe.name)
+                .appendTo($suggestions);
+        });
+
+        $suggestions.toggle(matches.length > 0);
+    }
+
+    // Every time a key is released in the search field
+    $search.on("keyup", function () {
+        filterRecipeCards();
+        showSuggestions();
+    });
+
+    // Click on a suggestion: put its name into the field
+    $suggestions.on("click", "li", function () {
+        $search.val($(this).attr("data-name"));
+        $suggestions.hide();
+        $('.filter-btn[data-category="all"]').trigger("click");
+        filterRecipeCards();
+    });
+
+    // After a category button re-draws the cards, apply the search again
+    $("#filterButtons").on("click", ".filter-btn", function () {
+        filterRecipeCards();
+    });
+
+    // Click anywhere outside the search box: close the suggestions
+    $(document).on("click", function (event) {
+        if ($(event.target).closest(".search-box").length === 0) {
+            $suggestions.hide();
         }
     });
 
-    // ---------- TASK 7: toasts for user actions ----------
 
-    // Day / night mode button (the old vanilla handler runs first and toggles the class)
-    $("#colorBtn").on("click", function () {
-        var isDark = $("body").hasClass("dark-mode");
-        showToast(isDark ? "Night mode is on" : "Day mode is on", "info", 2000);
+    // ---------- TASK 3: Search highlighting (breakfast.html) ----------
+
+    var $textBlocks = $(".ingredients-list li, .steps-list li, .faq-question, .faq-answer p");
+
+    // Remember the original text of every block
+    $textBlocks.each(function () {
+        $(this).data("original", $(this).text().trim());
     });
 
-    // Star rating on the About page
-    $("#starRating").on("click", ".star", function () {
-        showToast("Thanks for your rating!", "success");
-    });
+    $("#pageSearch").on("keyup", function () {
+        var keyword = $(this).val().trim();
+        var safeWord = keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        var regex = new RegExp("(" + safeWord + ")", "gi");
 
-    // Subscribe pop-up on the Home page (addClass / removeClass are safe to repeat)
-    $("#openPopup").on("click", function () {
-        $("#popup").addClass("open");
-    });
-    $("#closePopup").on("click", function () {
-        $("#popup").removeClass("open");
-    });
-    $("#popup").on("click", function (event) {
-        if (event.target === this) {
-            $(this).removeClass("open");
-        }
-    });
-    $("#popupForm").on("submit", function (event) {
-        event.preventDefault();
-        var email = $("#popEmail").val().trim();
-        var $error = $("#popEmailError");
+        $textBlocks.each(function () {
+            var original = $(this).data("original");
 
-        if (!/^\S+@\S+\.\S+$/.test(email)) {
-            $error.text("Please enter a valid email.");
-            showToast("Please enter a valid email.", "error");
-            return;
-        }
-        $error.text("");
-        this.reset();
-        $("#popup").removeClass("open");
-        showToast("Subscribed successfully!", "success");
-    });
-
-    // Sign up form on the About page
-    $("#signupForm").on("submit", function (event) {
-        event.preventDefault();
-        var name = $("#suName").val().trim();
-        var email = $("#suEmail").val().trim();
-        var password = $("#suPassword").val();
-        var confirm = $("#suConfirm").val();
-        var valid = true;
-
-        $("#suNameError").text(name === "" ? "Name is required." : "");
-        $("#suEmailError").text(/^\S+@\S+\.\S+$/.test(email) ? "" : "Enter a valid email.");
-        $("#suPasswordError").text(password.length >= 8 ? "" : "Password must have at least 8 characters.");
-        $("#suConfirmError").text(password === confirm ? "" : "Passwords do not match.");
-
-        $(this).find(".error").each(function () {
-            if ($(this).text() !== "") {
-                valid = false;
+            if (keyword === "") {
+                $(this).text(original);
+            } else {
+                $(this).html(original.replace(regex, '<mark class="highlight">$1</mark>'));
             }
         });
 
-        if (!valid) {
-            showToast("Please fix the errors in the form.", "error");
+        // Open the FAQ answers that contain a match
+        $(".faq-item").removeClass("open");
+        $("mark.highlight").closest(".faq-item").addClass("open");
+
+        var count = $("mark.highlight").length;
+        $("#searchResult").text(keyword === "" ? "" : "Matches found: " + count);
+    });
+
+    // FAQ: click on a question opens or closes its answer
+    $(".faq-question").on("click", function () {
+        $(this).closest(".faq-item").toggleClass("open");
+    });
+
+
+    // ---------- TASK 4: Scroll progress bar ----------
+
+    $("body").prepend('<div id="scrollProgress"></div>');
+
+    function updateProgressBar() {
+        var scrollTop = $(window).scrollTop();
+        var maxScroll = $(document).height() - $(window).height();
+        var percent = maxScroll > 0 ? (scrollTop / maxScroll) * 100 : 0;
+        $("#scrollProgress").css("width", percent + "%");
+    }
+
+
+    // ---------- TASK 5: Animated number counter ----------
+
+    var countersStarted = false;
+
+    function startCounters() {
+        var $stats = $(".stats-section");
+
+        if (countersStarted || $stats.length === 0 || !isInView($stats)) {
             return;
         }
-        this.reset();
-        showToast("Welcome, " + name + "! Account created.", "success");
+        countersStarted = true;
+
+        $(".counter").each(function () {
+            var $counter = $(this);
+            var target = Number($counter.attr("data-target"));
+
+            $({ value: 0 }).animate({ value: target }, {
+                duration: 2000,
+                step: function (now) {
+                    $counter.text(Math.floor(now));
+                },
+                complete: function () {
+                    $counter.text(target);
+                }
+            });
+        });
+    }
+
+
+    // ---------- TASK 9: Image lazy loading ----------
+
+    function lazyLoadImages() {
+        $("img.lazy").each(function () {
+            var $img = $(this);
+
+            if (isInView($img.closest("section"))) {
+                $img.attr("src", $img.attr("data-src"));
+                $img.removeClass("lazy");
+                console.log("Lazy loaded: " + $img.attr("alt"));
+            }
+        });
+    }
+
+
+    // ---------- One scroll listener for tasks 4, 5 and 9 ----------
+
+    $(window).on("scroll", function () {
+        updateProgressBar();
+        startCounters();
+        lazyLoadImages();
     });
+
+    // Run once at the start for what is already visible
+    updateProgressBar();
+    startCounters();
+    lazyLoadImages();
+
+
+    // ---------- TASK 6: Loading spinner on submit (Subscribe popup) ----------
+
+    $("#openPopup").on("click", function () {
+        $("#popup").addClass("open");
+    });
+
+    $("#closePopup").on("click", function () {
+        $("#popup").removeClass("open");
+    });
+
+    $("#popupForm").on("submit", function (event) {
+        event.preventDefault();
+
+        var email = $("#popEmail").val().trim();
+        var $button = $(this).find("button[type='submit']");
+
+        if (!/^\S+@\S+\.\S+$/.test(email)) {
+            $("#popEmailError").text("Please enter a valid email.");
+            return;
+        }
+        $("#popEmailError").text("");
+
+        // Show spinner and block the button
+        $button.prop("disabled", true)
+               .html('<span class="spinner-border spinner-border-sm"></span> Please wait...');
+
+        // Pretend we are waiting for a server for 2 seconds
+        setTimeout(function () {
+            $button.prop("disabled", false).text("Subscribe");
+            $("#popupForm")[0].reset();
+            $("#popup").removeClass("open");
+            showToast("✅ You are subscribed to new recipes!");
+        }, 2000);
+    });
+
+
+    // ---------- TASK 8: Copy to clipboard button (recipe pages) ----------
+
+    // Put a "Copy" button before every ingredients list
+    $(".ingredients-list").before(
+        '<button type="button" class="copy-btn">' +
+            '<span class="copy-icon"></span> Copy ' +
+            '<span class="copy-tooltip">Copied to clipboard!</span>' +
+        '</button>'
+    );
+
+    $(".copy-btn").on("click", function () {
+        var $button = $(this);
+
+        // Collect every ingredient into one text, one per line
+        var text = $button.next(".ingredients-list").find("li").map(function () {
+            return "- " + $(this).text().trim();
+        }).get().join("\n");
+
+        navigator.clipboard.writeText(text).then(function () {
+            $button.find(".copy-icon").text("✔");
+            $button.find(".copy-tooltip").fadeIn(200);
+
+            setTimeout(function () {
+                $button.find(".copy-icon").text("📋");
+                $button.find(".copy-tooltip").fadeOut(200);
+            }, 2000);
+        }).catch(function () {
+            showToast("Sorry, copying is not allowed in this browser.");
+        });
+    });
+
+    // TASK 7 + 8: when the user copies any text himself (Ctrl+C)
+    $(document).on("copy", function () {
+        showToast("📋 Copied to clipboard!");
+    });
+
 });

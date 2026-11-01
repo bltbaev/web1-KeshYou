@@ -1,4 +1,4 @@
-a<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -10,7 +10,8 @@ a<!DOCTYPE html>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="css/style.css">
-    <!-- jQuery (Assignment 6, Task 0) -->
+
+    <!-- ASSIGNMENT 6, TASK 0: jQuery from CDN -->
     <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
 </head>
 
@@ -27,7 +28,7 @@ a<!DOCTYPE html>
 
         <div class="header-tools">
             <span id="dateTime" class="header-date"></span>
-            <button type="button" id="colorBtn" class="color-btn">Change Color</button>
+            <button type="button" id="colorBtn" class="color-btn">Dark Mode</button>
         </div>
 
         <nav class="navbar navbar-expand-lg p-0" aria-label="Main navigation">
@@ -147,9 +148,9 @@ a<!DOCTYPE html>
                 </h3>
 
                 <img
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://hoff.ru/upload/medialibrary/b45/nvu3fs2bd85awuwt2zaiy0bbyhm2kcsp.jpg"
+                    src="https://hoff.ru/upload/medialibrary/b45/nvu3fs2bd85awuwt2zaiy0bbyhm2kcsp.jpg"
                     alt="Borscht with fresh herbs"
-                    class="recipe-img card-img-top lazy"
+                    class="recipe-img card-img-top"
                 >
 
 
@@ -157,12 +158,9 @@ a<!DOCTYPE html>
 
                     <div class="col-lg-6 col-md-6 col-12">
 
-                        <div class="copy-header">
-                            <h4>Ingredients:</h4>
-                            <button type="button" class="copy-btn" data-copy-target="#ingredientsList" data-copy-label="Ingredients" aria-label="Copy ingredients"></button>
-                        </div>
+                        <h4>Ingredients:</h4>
 
-                        <ul class="ingredients-list copy-source" id="ingredientsList">
+                        <ul class="ingredients-list">
 
                             <li>Beef - 400g</li>
                             <li>Beetroot - 1 pc</li>
@@ -176,12 +174,9 @@ a<!DOCTYPE html>
 
                     <div class="col-lg-6 col-md-6 col-12">
 
-                        <div class="copy-header">
-                            <h4>Instructions:</h4>
-                            <button type="button" class="copy-btn" data-copy-target="#stepsList" data-copy-label="Instructions" aria-label="Copy instructions"></button>
-                        </div>
+                        <h4>Instructions:</h4>
 
-                        <ol class="steps-list copy-source" id="stepsList">
+                        <ol class="steps-list">
 
                             <li>
                                 Simmer the beef to make a rich broth for about 1.5 hours.

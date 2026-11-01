@@ -13,8 +13,9 @@
 
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- jQuery (Assignment 6, Task 0) -->
+    <!-- ASSIGNMENT 6, TASK 0: jQuery from CDN -->
     <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+
 </head>
 
 <body>
@@ -36,7 +37,7 @@
 
         <div class="header-tools">
             <span id="dateTime" class="header-date"></span>
-            <button type="button" id="colorBtn" class="color-btn">Change Color</button>
+            <button type="button" id="colorBtn" class="color-btn">Dark Mode</button>
         </div>
 
         <nav class="navbar navbar-expand-lg p-0"
@@ -211,21 +212,18 @@
                 </h3>
 
 
-                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/cake.png"
+                <img src="images/cake.png"
                      alt="San Sebastian cheesecake"
-                     class="recipe-img card-img-top lazy">
+                     class="recipe-img card-img-top">
 
 
                 <div class="row mt-4">
 
                     <div class="col-lg-6 col-md-6 col-12">
 
-                        <div class="copy-header">
-                            <h4>Ingredients:</h4>
-                            <button type="button" class="copy-btn" data-copy-target="#ingredientsList" data-copy-label="Ingredients" aria-label="Copy ingredients"></button>
-                        </div>
+                        <h4>Ingredients:</h4>
 
-                        <ul class="ingredients-list copy-source" id="ingredientsList">
+                        <ul class="ingredients-list">
 
                             <li>
                                 Cream cheese - 800g
@@ -262,12 +260,9 @@
 
                     <div class="col-lg-6 col-md-6 col-12">
 
-                        <div class="copy-header">
-                            <h4>Instructions:</h4>
-                            <button type="button" class="copy-btn" data-copy-target="#stepsList" data-copy-label="Instructions" aria-label="Copy instructions"></button>
-                        </div>
+                        <h4>Instructions:</h4>
 
-                        <ol class="steps-list copy-source" id="stepsList">
+                        <ol class="steps-list">
 
                             <li>
                                 Beat the cream cheese with sugar
