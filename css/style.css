@@ -818,3 +818,175 @@ body.dark-mode .filter-btn.active {
     background: #ffffff;
     color: #000000;
 }
+
+/* =====================================================
+   ASSIGNMENT 6 (jQuery): TASK 7 toasts, TASK 8 copy button, TASK 9 lazy loading
+   ===================================================== */
+
+/* ----- Task 7: toast notifications ----- */
+#toastContainer {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 3000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: calc(100vw - 40px);
+    pointer-events: none;
+}
+
+.toast-msg {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 240px;
+    max-width: 340px;
+    padding: 12px 14px;
+    background: #fff;
+    color: #2b231f;
+    border-left: 5px solid #c06038;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    font-size: 15px;
+    line-height: 1.35;
+}
+
+.toast-msg.success { border-left-color: #3c8d5a; }
+.toast-msg.error   { border-left-color: #c0392b; }
+.toast-msg.info    { border-left-color: #c06038; }
+
+.toast-icon {
+    flex: 0 0 auto;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    background: #c06038;
+}
+
+.toast-msg.success .toast-icon { background: #3c8d5a; }
+.toast-msg.error .toast-icon   { background: #c0392b; }
+
+.toast-text { flex: 1 1 auto; }
+
+.toast-close {
+    flex: 0 0 auto;
+    border: none;
+    background: none;
+    color: inherit;
+    opacity: 0.5;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.toast-close:hover { opacity: 1; }
+
+body.dark-mode .toast-msg {
+    background: #1e1e1e;
+    color: #fff;
+}
+
+/* ----- Task 8: copy button + tooltip ----- */
+.copy-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+.copy-header h4 {
+    margin: 0;
+}
+
+.copy-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    background: #fff;
+    color: #c06038;
+    border: 1px solid #c06038;
+    border-radius: 20px;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.copy-btn:hover {
+    background: #c06038;
+    color: #fff;
+}
+
+.copy-btn.copied {
+    background: #3c8d5a;
+    border-color: #3c8d5a;
+    color: #fff;
+}
+
+.copy-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.copy-tooltip {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 8px);
+    right: 0;
+    white-space: nowrap;
+    background: #2b231f;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    pointer-events: none;
+}
+
+.copy-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    right: 16px;
+    border: 5px solid transparent;
+    border-top-color: #2b231f;
+}
+
+/* ----- Task 9: lazy loading ----- */
+img.lazy {
+    min-height: 120px;
+    background: linear-gradient(90deg, #eadfce 25%, #f6eddf 50%, #eadfce 75%);
+    background-size: 200% 100%;
+    animation: lazyShimmer 1.2s linear infinite;
+}
+
+img.lazy.loaded {
+    min-height: 0;
+    background: none;
+    animation: lazyFadeIn 0.6s ease;
+}
+
+@keyframes lazyShimmer {
+    from { background-position: 200% 0; }
+    to   { background-position: -200% 0; }
+}
+
+@keyframes lazyFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}

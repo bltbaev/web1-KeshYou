@@ -12,6 +12,8 @@
 
     <link rel="stylesheet" href="css/style.css">
 
+    <!-- jQuery (Assignment 6, Task 0) -->
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
 </head>
 
 <body>
@@ -206,18 +208,21 @@
                 </h3>
 
 
-                <img src="https://avatars.dzeninfra.ru/get-zen_doc/8225917/pub_63f5fe0c5b2bea22b7c1d975_63f5fe29593b986e4c30770b/scale_1200"
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://avatars.dzeninfra.ru/get-zen_doc/8225917/pub_63f5fe0c5b2bea22b7c1d975_63f5fe29593b986e4c30770b/scale_1200"
                      alt="Fluffy kefir pancakes"
-                     class="recipe-img card-img-top">
+                     class="recipe-img card-img-top lazy">
 
 
                 <div class="row mt-4">
 
                     <div class="col-lg-6 col-md-6 col-12">
 
-                        <h4>Ingredients:</h4>
+                        <div class="copy-header">
+                            <h4>Ingredients:</h4>
+                            <button type="button" class="copy-btn" data-copy-target="#ingredientsList" data-copy-label="Ingredients" aria-label="Copy ingredients"></button>
+                        </div>
 
-                        <ul class="ingredients-list">
+                        <ul class="ingredients-list copy-source" id="ingredientsList">
 
                             <li>
                                 Kefir - 250 ml
@@ -254,9 +259,12 @@
 
                     <div class="col-lg-6 col-md-6 col-12">
 
-                        <h4>Instructions:</h4>
+                        <div class="copy-header">
+                            <h4>Instructions:</h4>
+                            <button type="button" class="copy-btn" data-copy-target="#stepsList" data-copy-label="Instructions" aria-label="Copy instructions"></button>
+                        </div>
 
-                        <ol class="steps-list">
+                        <ol class="steps-list copy-source" id="stepsList">
 
                             <li>
                                 Mix the kefir, eggs, sugar and salt in a bowl.
