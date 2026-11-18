@@ -1,232 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lunch Recipes - Simple Recipes</title>
+    <meta name="description" content="Classic borscht: ingredients, steps and tips. A simple recipe from Simple Recipes.">
+    <title>Lunch - Simple Recipes</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%B3%3C/text%3E%3C/svg%3E">
 
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- ASSIGNMENT 6, TASK 0: jQuery from CDN -->
-    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+    <!-- Applies the saved light/dark theme before the page is drawn -->
+    <script src="js/theme-init.js"></script>
 </head>
 
 <body>
 
 <div class="page-grid">
 
-    <header id="main-header">
-
-        <a href="index.html" class="logo-link">
-            <div class="logo">SR</div>
-            <span class="site-name">Simple Recipes</span>
-        </a>
-
-        <div class="header-tools">
-            <span id="dateTime" class="header-date"></span>
-            <button type="button" id="colorBtn" class="color-btn">Dark Mode</button>
-        </div>
-
-        <nav class="navbar navbar-expand-lg p-0" aria-label="Main navigation">
-
+    <header class="site-header">
+        <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
             <div class="container-fluid p-0">
 
-                <button class="navbar-toggler"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#siteNav"
-                        aria-controls="siteNav"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation">
+                <a href="index.html" class="logo-link me-3">
+                    <span class="logo" aria-hidden="true"><i class="bi bi-egg-fried"></i></span>
+                    <span class="site-name">Simple Recipes</span>
+                </a>
 
+                <!-- Theme switch stays visible on mobile, outside the collapsed menu -->
+                <button type="button" id="themeToggle" class="theme-toggle ms-auto order-lg-last ms-lg-2" aria-label="Switch to dark mode">
+                    <i class="bi bi-moon-stars"></i>
+                </button>
+
+                <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#siteNav"
+                        aria-controls="siteNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-
                 </button>
 
                 <div class="collapse navbar-collapse" id="siteNav">
-
-                    <ul class="navbar-nav ms-auto">
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Home</a>
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+                        <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house"></i> Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="recipes.html"><i class="bi bi-search"></i> Recipes</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-journal-bookmark"></i> Meals
+                            </a>
+                            <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="breakfast.html"><i class="bi bi-cup-hot"></i> Breakfast</a></li>
+                        <li><a class="dropdown-item active" href="lunch.html"><i class="bi bi-egg-fried"></i> Lunch</a></li>
+                        <li><a class="dropdown-item" href="dinner.html"><i class="bi bi-fire"></i> Dinner</a></li>
+                        <li><a class="dropdown-item" href="dessert.html"><i class="bi bi-cake2"></i> Desserts</a></li>
+                            </ul>
                         </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="about.html">About Us</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="breakfast.html">Breakfast</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link active" href="lunch.html">Lunch</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="dinner.html">Dinner</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="dessert.html">Desserts</a>
-                        </li>
-
+                        <li class="nav-item"><a class="nav-link" href="about.html"><i class="bi bi-people"></i> About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html"><i class="bi bi-envelope"></i> Contact</a></li>
                     </ul>
 
+                    <div class="header-actions ms-lg-3">
+                        <div class="auth-links" data-auth="guest">
+                            <a href="login.html" class="btn btn-sm btn-outline-accent">Log in</a>
+                            <a href="signup.html" class="btn btn-sm btn-accent">Sign up</a>
+                        </div>
+                        <div class="auth-links" data-auth="user" hidden>
+                            <a href="profile.html" class="btn btn-sm btn-outline-accent user-chip">
+                                <i class="bi bi-person-circle"></i> <span data-user-name>Profile</span>
+                            </a>
+                            <button type="button" class="btn btn-sm btn-accent" data-action="logout">
+                                <i class="bi bi-box-arrow-right"></i> Log out
+                            </button>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </nav>
-
     </header>
 
-
-    <aside class="sidebar">
-
+    <aside class="sidebar" aria-label="Recipe categories">
         <h3>Categories</h3>
-
         <ul class="sidebar-links">
-
-            <li><a href="index.html">Home</a></li>
-            <li><a href="breakfast.html">Breakfast</a></li>
-            <li><a href="lunch.html" class="active">Lunch</a></li>
-            <li><a href="dinner.html">Dinner</a></li>
-            <li><a href="dessert.html">Desserts</a></li>
-            <li><a href="about.html">About Us</a></li>
-
+            <li><a href="recipes.html"><i class="bi bi-grid"></i> All recipes</a></li>
+            <li><a href="breakfast.html"><i class="bi bi-cup-hot"></i> Breakfast</a></li>
+            <li><a href="lunch.html" class="active" aria-current="page"><i class="bi bi-egg-fried"></i> Lunch</a></li>
+            <li><a href="dinner.html"><i class="bi bi-fire"></i> Dinner</a></li>
+            <li><a href="dessert.html"><i class="bi bi-cake2"></i> Desserts</a></li>
         </ul>
-
         <div class="sidebar-tip">
-
-            <h4>Chef's Tip</h4>
-
-            <p>
-                Always use fresh ingredients for the best flavor in your meals!
-            </p>
-
+            <h4><i class="bi bi-lightbulb"></i> Chef's tip</h4>
+            <p>Let borscht rest for 20 minutes before serving - the taste becomes richer.</p>
         </div>
-
     </aside>
 
-
-    <main class="container">
-
-        <div class="container-fluid px-0">
-
-            <div class="row g-4">
-
-                <div class="col-lg-6 col-md-6 col-12">
-
-                    <h2>
-                        Hearty Lunches for the Whole Family
-                    </h2>
-
-                </div>
-
-                <div class="col-lg-6 col-md-6 col-12">
-
-                    <p class="mt-lg-4 px-sm-2">
-                        Simple recipes with clear ingredients and instructions.
-                    </p>
-
-                </div>
-
+    <main class="site-main">
+        <section class="recipe-hero">
+            <div>
+                <p class="day-greeting mb-2"><i class="bi bi-bookmark-star"></i> <span>Lunch recipe</span></p>
+                <h1 class="text-start">Classic borscht</h1>
+                <p class="hero-lead ms-0">A rich and colorful beet soup with beef and vegetables. Even better the next day.</p>
+                <ul class="recipe-meta">
+                <li><i class="bi bi-clock"></i> 1 h 30 min</li>
+                <li><i class="bi bi-people"></i> 6 servings</li>
+                <li><i class="bi bi-bar-chart"></i> Medium</li>
+                </ul>
+                <a href="recipes.html?q=soup" class="btn btn-outline-accent">More soup ideas <i class="bi bi-arrow-right"></i></a>
             </div>
+            <img src="https://hoff.ru/upload/medialibrary/b45/nvu3fs2bd85awuwt2zaiy0bbyhm2kcsp.jpg" alt="Bowl of borscht with fresh herbs">
+        </section>
 
+        <div class="page-search mt-5">
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-search"></i></span>
+                <input type="text" id="pageSearch" class="form-control" placeholder="Find a word on this page, e.g. beef" aria-label="Search on this page">
+            </div>
+            <span id="searchResult" class="search-result" aria-live="polite"></span>
         </div>
 
-
-        <article class="recipe-card card mt-4">
-
-            <div class="card-body">
-
-                <h3 class="card-title">
-                    Classic Borscht
-                </h3>
-
-                <img
-                    src="https://hoff.ru/upload/medialibrary/b45/nvu3fs2bd85awuwt2zaiy0bbyhm2kcsp.jpg"
-                    alt="Borscht with fresh herbs"
-                    class="recipe-img card-img-top"
-                >
-
-
-                <div class="row mt-4">
-
-                    <div class="col-lg-6 col-md-6 col-12">
-
-                        <h4>Ingredients:</h4>
-
-                        <ul class="ingredients-list">
-
-                            <li>Beef - 400g</li>
-                            <li>Beetroot - 1 pc</li>
-                            <li>Cabbage - 200g</li>
-                            <li>Potatoes - 3 pcs</li>
-
-                        </ul>
-
-                    </div>
-
-
-                    <div class="col-lg-6 col-md-6 col-12">
-
-                        <h4>Instructions:</h4>
-
-                        <ol class="steps-list">
-
-                            <li>
-                                Simmer the beef to make a rich broth for about 1.5 hours.
-                            </li>
-
-                            <li>
-                                Chop the vegetables and sauté the beetroot,
-                                onion, and carrots in a pan.
-                            </li>
-
-                            <li>
-                                Add potatoes and cabbage to the broth,
-                                stir in the sautéed vegetables,
-                                and cook until tender.
-                            </li>
-
-                        </ol>
-
-                    </div>
-
+        <div class="row g-4 mt-1">
+            <div class="col-lg-5">
+                <div class="recipe-box">
+                    <h3><i class="bi bi-basket"></i> Ingredients</h3>
+                    <button type="button" class="btn btn-sm btn-outline-accent copy-btn" data-copy-target="ingredientsList">
+                        <i class="bi bi-clipboard"></i> Copy list
+                    </button>
+                    <ul id="ingredientsList" class="ingredients-list" data-searchable>
+                        <li>Beef - 400 g</li>
+                        <li>Beetroot - 1 piece</li>
+                        <li>Cabbage - 200 g</li>
+                        <li>Potatoes - 3 pieces</li>
+                        <li>Carrot - 1 piece</li>
+                        <li>Onion - 1 piece</li>
+                        <li>Tomato paste - 1 tablespoon</li>
+                        <li>Salt, pepper, bay leaf - to taste</li>
+                    </ul>
                 </div>
-
-
-                <a href="index.html"
-                   class="btn btn-outline-secondary mt-3">
-
-                    Back to Home
-
-                </a>
-
             </div>
+            <div class="col-lg-7">
+                <div class="recipe-box">
+                    <h3><i class="bi bi-list-ol"></i> Instructions</h3>
+                    <ol class="steps-list" data-searchable>
+                        <li>Simmer the beef in 2.5 liters of water for about 1 hour to make a rich broth.</li>
+                        <li>Chop the onion, grate the carrot and beetroot.</li>
+                        <li>Fry the onion, carrot and beetroot in a pan, then add the tomato paste.</li>
+                        <li>Add diced potatoes and shredded cabbage to the broth and cook for 15 minutes.</li>
+                        <li>Stir in the fried vegetables, add salt, pepper and a bay leaf, and cook for 10 more minutes.</li>
+                        <li>Serve with sour cream and fresh dill.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
 
-        </article>
-
+        <section class="page-section">
+            <h2 class="text-start"><i class="bi bi-question-circle"></i> FAQ</h2>
+            <div class="faq-item">
+                <button type="button" class="faq-question" aria-expanded="false"><span>How do I keep borscht bright red?</span> <i class="bi bi-chevron-down"></i></button>
+                <div class="faq-answer"><p>Add a few drops of lemon juice or vinegar to the beetroot while frying.</p></div>
+            </div>
+            <div class="faq-item">
+                <button type="button" class="faq-question" aria-expanded="false"><span>Can I make it without meat?</span> <i class="bi bi-chevron-down"></i></button>
+                <div class="faq-answer"><p>Yes. Use vegetable broth and add beans for a filling vegetarian version.</p></div>
+            </div>
+            <div class="faq-item">
+                <button type="button" class="faq-question" aria-expanded="false"><span>How long can I keep it?</span> <i class="bi bi-chevron-down"></i></button>
+                <div class="faq-answer"><p>Up to 3 days in the fridge in a closed pot.</p></div>
+            </div>
+        </section>
     </main>
 
-
-    <footer>
-
-        <p class="m-0">
-            Developer Team: Zangar, Iliyas, Bekarys
-        </p>
-
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p>&copy; <span data-year>2026</span> Simple Recipes &middot; Developer team: Zangar, Iliyas, Bekarys</p>
+            <ul class="footer-links">
+                <li><a href="recipes.html">Recipes</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
     </footer>
 
 </div>
 
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/storage.js"></script>
 <script src="js/script.js"></script>
-
 </body>
 </html>
