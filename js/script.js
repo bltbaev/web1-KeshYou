@@ -8,7 +8,6 @@
 // =========================================================
 
 // ---------- 1. Light / dark theme ----------
-// theme-init.js already applied the saved theme in <head>.
 const themeToggle = document.getElementById("themeToggle");
 
 function applyTheme(theme) {
@@ -17,22 +16,32 @@ function applyTheme(theme) {
 
     if (themeToggle) {
         const isDark = theme === "dark";
-        themeToggle.querySelector("i").className = isDark ? "bi bi-sun" : "bi bi-moon-stars";
-        themeToggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+        themeToggle.querySelector("i").className =
+            isDark ? "bi bi-sun" : "bi bi-moon-stars";
+
+        themeToggle.setAttribute(
+            "aria-label",
+            isDark ? "Switch to light mode" : "Switch to dark mode"
+        );
+
         themeToggle.title = isDark ? "Light mode" : "Dark mode";
     }
 }
 
 if (themeToggle) {
-    applyTheme(document.documentElement.getAttribute("data-bs-theme") || "light");
+    applyTheme(
+        document.documentElement.getAttribute("data-bs-theme") || "light"
+    );
 
     themeToggle.addEventListener("click", function () {
-        const current = document.documentElement.getAttribute("data-bs-theme");
+        const current =
+            document.documentElement.getAttribute("data-bs-theme");
+
         applyTheme(current === "dark" ? "light" : "dark");
     });
 }
 
-// ---------- 2. Header: show "Log in / Sign up" or "Profile / Log out" ----------
+// ---------- 2. Header authentication ----------
 const currentUser = getCurrentUser();
 
 document.querySelectorAll("[data-auth]").forEach(function (element) {
@@ -53,17 +62,21 @@ document.querySelectorAll("[data-action='logout']").forEach(function (button) {
     });
 });
 
-// ---------- 3. Toast: small message in the corner ----------
+// ---------- 3. Toast messages ----------
 function showToast(message) {
     const old = document.querySelector(".toast-message");
+
     if (old) {
         old.remove();
     }
+
     const toast = document.createElement("div");
     toast.className = "toast-message";
     toast.setAttribute("role", "status");
     toast.textContent = message;
+
     document.body.appendChild(toast);
+
     setTimeout(function () {
         toast.remove();
     }, 2500);
@@ -75,15 +88,19 @@ progressBar.id = "scrollProgress";
 document.body.prepend(progressBar);
 
 function updateProgressBar() {
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    const percent = maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
+    const maxScroll =
+        document.documentElement.scrollHeight - window.innerHeight;
+
+    const percent =
+        maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
+
     progressBar.style.width = percent + "%";
 }
 
 window.addEventListener("scroll", updateProgressBar, { passive: true });
 updateProgressBar();
 
-// ---------- 5. Reveal sections when they scroll into view ----------
+// ---------- 5. Reveal sections ----------
 const revealItems = document.querySelectorAll(".reveal");
 
 if ("IntersectionObserver" in window) {
@@ -105,48 +122,59 @@ if ("IntersectionObserver" in window) {
     });
 }
 
-// ---------- 6. Greeting by time of day (home page) ----------
+// ---------- 6. Greeting by time of day ----------
 const dayGreeting = document.getElementById("dayGreeting");
 
 if (dayGreeting) {
     const hour = new Date().getHours();
-    const name = currentUser ? ", " + currentUser.name.split(" ")[0] : "";
+    const name = currentUser
+        ? ", " + currentUser.name.split(" ")[0]
+        : "";
+
     let icon;
     let text;
 
     switch (true) {
         case hour < 5:
             icon = "bi-moon-stars";
-            text = "Late night" + name + "? A sweet dessert is always a good idea.";
+            text = "Late night" + name +
+                "? A sweet dessert is always a good idea.";
             break;
+
         case hour < 12:
             icon = "bi-sunrise";
-            text = "Good morning" + name + "! How about fluffy pancakes?";
+            text = "Good morning" + name +
+                "! How about fluffy pancakes?";
             break;
+
         case hour < 18:
             icon = "bi-sun";
-            text = "Good afternoon" + name + "! Time for a hearty lunch.";
+            text = "Good afternoon" + name +
+                "! Time for a hearty lunch.";
             break;
+
         default:
             icon = "bi-sunset";
-            text = "Good evening" + name + "! Beshbarmak for dinner?";
+            text = "Good evening" + name +
+                "! Beshbarmak for dinner?";
     }
 
     dayGreeting.querySelector("i").className = "bi " + icon;
     dayGreeting.querySelector("span").textContent = text;
 }
 
-// ---------- 7. Animated number counters (home page) ----------
-// data-target = fixed number, data-source = live number from localStorage
+// ---------- 7. Animated counters ----------
 const counters = document.querySelectorAll(".counter");
 
 function getCounterTarget(counter) {
     if (counter.dataset.source === "users") {
         return getUsers().length;
     }
+
     if (counter.dataset.source === "favorites") {
         return getFavorites().length;
     }
+
     return Number(counter.dataset.target) || 0;
 }
 
@@ -157,13 +185,16 @@ function animateCounter(counter) {
 
     function step(now) {
         const progress = Math.min((now - start) / duration, 1);
+
         counter.textContent = Math.floor(progress * target);
+
         if (progress < 1) {
             requestAnimationFrame(step);
         } else {
             counter.textContent = target;
         }
     }
+
     requestAnimationFrame(step);
 }
 
@@ -188,21 +219,28 @@ if (counters.length > 0 && "IntersectionObserver" in window) {
 
 // ---------- 8. Recipe pages ----------
 
-// 8.1 Search inside the page: highlights the word in ingredients, steps and FAQ
+// 8.1 Search within recipe pages
 const pageSearch = document.getElementById("pageSearch");
 
 if (pageSearch) {
     const searchResult = document.getElementById("searchResult");
-    const textBlocks = document.querySelectorAll("[data-searchable] li, .faq-question span, .faq-answer p");
 
-    // Remember the original text of every block
+    const textBlocks = document.querySelectorAll(
+        "[data-searchable] li, .faq-question span, .faq-answer p"
+    );
+
     textBlocks.forEach(function (block) {
         block.dataset.original = block.textContent.trim();
     });
 
     pageSearch.addEventListener("input", function () {
         const keyword = pageSearch.value.trim();
-        const safeWord = keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+        const safeWord = keyword.replace(
+            /[.*+?^${}()|[\]\\]/g,
+            "\\$&"
+        );
+
         const regex = new RegExp("(" + safeWord + ")", "gi");
         let matches = 0;
 
@@ -211,8 +249,8 @@ if (pageSearch) {
             block.textContent = original;
 
             if (keyword !== "" && regex.test(original)) {
-                // Rebuild the text with <mark> around every match (no user HTML is inserted)
                 block.textContent = "";
+
                 original.split(regex).forEach(function (part, index) {
                     if (index % 2 === 1) {
                         const mark = document.createElement("mark");
@@ -225,59 +263,83 @@ if (pageSearch) {
                     }
                 });
             }
+
             regex.lastIndex = 0;
         });
 
-        // Open the FAQ answers that contain a match
         document.querySelectorAll(".faq-item").forEach(function (item) {
-            item.classList.toggle("open", keyword !== "" && item.querySelector("mark") !== null);
+            item.classList.toggle(
+                "open",
+                keyword !== "" && item.querySelector("mark") !== null
+            );
         });
 
-        searchResult.textContent = keyword === "" ? "" : matches === 0 ? "No matches" : "Matches found: " + matches;
+        searchResult.textContent =
+            keyword === ""
+                ? ""
+                : matches === 0
+                    ? "No matches"
+                    : "Matches found: " + matches;
     });
 }
 
-// 8.2 Copy the ingredients list to the clipboard
+// 8.2 Copy ingredients
 document.querySelectorAll(".copy-btn").forEach(function (button) {
     button.addEventListener("click", function () {
         const list = document.getElementById(button.dataset.copyTarget);
-        const text = Array.from(list.querySelectorAll("li")).map(function (item) {
-            return "- " + item.textContent.trim();
-        }).join("\n");
 
-        navigator.clipboard.writeText(text).then(function () {
-            const icon = button.querySelector("i");
-            icon.className = "bi bi-check2";
-            showToast("Ingredients copied to clipboard");
-            setTimeout(function () {
-                icon.className = "bi bi-clipboard";
-            }, 2000);
-        }).catch(function () {
-            showToast("Sorry, copying is not allowed in this browser.");
-        });
+        const text = Array.from(list.querySelectorAll("li"))
+            .map(function (item) {
+                return "- " + item.textContent.trim();
+            })
+            .join("\n");
+
+        navigator.clipboard.writeText(text)
+            .then(function () {
+                const icon = button.querySelector("i");
+                icon.className = "bi bi-check2";
+
+                showToast("Ingredients copied to clipboard");
+
+                setTimeout(function () {
+                    icon.className = "bi bi-clipboard";
+                }, 2000);
+            })
+            .catch(function () {
+                showToast(
+                    "Sorry, copying is not allowed in this browser."
+                );
+            });
     });
 });
 
-// 8.3 FAQ: click on a question opens or closes the answer
+// 8.3 FAQ
 document.querySelectorAll(".faq-question").forEach(function (question) {
     question.addEventListener("click", function () {
         const item = question.closest(".faq-item");
         item.classList.toggle("open");
-        question.setAttribute("aria-expanded", item.classList.contains("open") ? "true" : "false");
+
+        question.setAttribute(
+            "aria-expanded",
+            item.classList.contains("open") ? "true" : "false"
+        );
     });
 });
 
-// ---------- 9. Star rating (About page), saved in localStorage ----------
+// ---------- 9. Star rating ----------
 const starRating = document.getElementById("starRating");
 
 if (starRating) {
     const stars = starRating.querySelectorAll(".star");
     const ratingMessage = document.getElementById("ratingMessage");
-    let savedRating = Number(localStorage.getItem(STORAGE_KEYS.rating)) || 0;
+
+    let savedRating =
+        Number(localStorage.getItem(STORAGE_KEYS.rating)) || 0;
 
     function paintStars(count, className) {
         stars.forEach(function (star, index) {
             star.classList.remove("hovered", "selected");
+
             if (index < count) {
                 star.classList.add(className);
             }
@@ -300,7 +362,9 @@ if (starRating) {
 
         star.addEventListener("click", function () {
             savedRating = index + 1;
+
             localStorage.setItem(STORAGE_KEYS.rating, savedRating);
+
             paintStars(savedRating, "selected");
             showRatingText();
             showToast("Thanks for your rating!");
@@ -312,7 +376,7 @@ if (starRating) {
     });
 }
 
-// Current year in the footer
+// Current year in footer
 document.querySelectorAll("[data-year]").forEach(function (element) {
     element.textContent = new Date().getFullYear();
 });

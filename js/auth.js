@@ -9,7 +9,6 @@
 const signupForm = document.getElementById("signupForm");
 
 if (signupForm) {
-    // A logged-in user does not need to register again
     if (getCurrentUser()) {
         window.location.replace("profile.html");
     }
@@ -21,8 +20,13 @@ if (signupForm) {
         suEmail: [Validators.required("email"), Validators.email],
         suPhone: [Validators.required("phone number"), Validators.phone],
         suPassword: [Validators.required("password"), Validators.password],
-        suConfirm: [Validators.required("password again"), Validators.matches("suPassword", "Passwords do not match.")],
-        suTerms: [Validators.checked("Please accept the terms to create an account.")]
+        suConfirm: [
+            Validators.required("password again"),
+            Validators.matches("suPassword", "Passwords do not match.")
+        ],
+        suTerms: [
+            Validators.checked("Please accept the terms to create an account.")
+        ]
     });
 
     signupForm.addEventListener("submit", function (event) {
@@ -30,7 +34,11 @@ if (signupForm) {
         hideFormMessage(signupMessage);
 
         if (!validateSignup()) {
-            showFormMessage(signupMessage, "Please fix the highlighted fields.", "error");
+            showFormMessage(
+                signupMessage,
+                "Please fix the highlighted fields.",
+                "error"
+            );
             return;
         }
 
@@ -38,7 +46,10 @@ if (signupForm) {
         const email = emailInput.value.trim().toLowerCase();
 
         if (findUserByEmail(email)) {
-            setFieldError(emailInput, "An account with this email already exists. Try logging in.");
+            setFieldError(
+                emailInput,
+                "An account with this email already exists. Try logging in."
+            );
             emailInput.focus();
             return;
         }
@@ -57,10 +68,16 @@ if (signupForm) {
 
         const submitButton = signupForm.querySelector("button[type='submit']");
         setButtonLoading(submitButton, true, "Creating account...");
-        showFormMessage(signupMessage, "Account created! Redirecting to log in...", "success");
+
+        showFormMessage(
+            signupMessage,
+            "Account created! Redirecting to log in...",
+            "success"
+        );
 
         setTimeout(function () {
-            window.location.href = "login.html?registered=1&email=" + encodeURIComponent(email);
+            window.location.href =
+                "login.html?registered=1&email=" + encodeURIComponent(email);
         }, 1200);
     });
 }
@@ -76,20 +93,32 @@ if (loginForm) {
     const loginMessage = document.getElementById("loginMessage");
     const params = new URLSearchParams(window.location.search);
 
-    // Coming from the sign up page: fill the email and greet the user
     if (params.get("registered") === "1") {
-        showFormMessage(loginMessage, "Your account is ready. Please log in.", "success");
+        showFormMessage(
+            loginMessage,
+            "Your account is ready. Please log in.",
+            "success"
+        );
     }
+
     if (params.get("email")) {
         document.getElementById("liEmail").value = params.get("email");
     }
+
     if (params.get("next") === "profile") {
-        showFormMessage(loginMessage, "Please log in to see your profile.", "error");
+        showFormMessage(
+            loginMessage,
+            "Please log in to see your profile.",
+            "error"
+        );
     }
 
     const validateLogin = setupValidation(loginForm, {
         liEmail: [Validators.required("email"), Validators.email],
-        liPassword: [Validators.required("password"), Validators.minLength(8, "Password")]
+        liPassword: [
+            Validators.required("password"),
+            Validators.minLength(8, "Password")
+        ]
     });
 
     loginForm.addEventListener("submit", function (event) {
@@ -100,16 +129,22 @@ if (loginForm) {
             return;
         }
 
-        const user = findUserByEmail(document.getElementById("liEmail").value);
+        const user = findUserByEmail(
+            document.getElementById("liEmail").value
+        );
         const password = document.getElementById("liPassword").value;
 
-        // Same message for both cases, so nobody can guess which emails are registered
         if (!user || user.password !== password) {
-            showFormMessage(loginMessage, "Incorrect email or password. Please try again.", "error");
+            showFormMessage(
+                loginMessage,
+                "Incorrect email or password. Please try again.",
+                "error"
+            );
             return;
         }
 
         setCurrentUser(user.email);
+
         const submitButton = loginForm.querySelector("button[type='submit']");
         setButtonLoading(submitButton, true, "Logging in...");
 
@@ -126,7 +161,6 @@ if (profilePage) {
     const user = getCurrentUser();
 
     if (!user) {
-        // Only logged-in users can see this page
         window.location.replace("login.html?next=profile");
     } else {
         renderProfile(user);
@@ -141,19 +175,34 @@ function renderProfile(user) {
         year: "numeric"
     });
 
-    document.getElementById("profileAvatar").textContent = user.name.charAt(0).toUpperCase();
+    document.getElementById("profileAvatar").textContent =
+        user.name.charAt(0).toUpperCase();
+
     document.getElementById("profileName").textContent = user.name;
-    document.getElementById("profileGreeting").textContent = "Welcome back, " + user.name.split(" ")[0] + "!";
+
+    document.getElementById("profileGreeting").textContent =
+        "Welcome back, " + user.name.split(" ")[0] + "!";
+
     document.getElementById("profileEmail").textContent = user.email;
-    document.getElementById("profilePhone").textContent = formatPhone(user.phone);
+    document.getElementById("profilePhone").textContent =
+        formatPhone(user.phone);
+
     document.getElementById("profileJoined").textContent = joined;
 
     const lastSearch = readJSON(STORAGE_KEYS.catalogState, null);
     const lastSearchText = document.getElementById("profileLastSearch");
+
     if (lastSearch && (lastSearch.query || lastSearch.category !== "All")) {
         const parts = [];
-        if (lastSearch.query) parts.push('"' + lastSearch.query + '"');
-        if (lastSearch.category && lastSearch.category !== "All") parts.push(lastSearch.category);
+
+        if (lastSearch.query) {
+            parts.push('"' + lastSearch.query + '"');
+        }
+
+        if (lastSearch.category && lastSearch.category !== "All") {
+            parts.push(lastSearch.category);
+        }
+
         lastSearchText.textContent = parts.join(" in ");
     } else {
         lastSearchText.textContent = "No searches yet";
@@ -163,6 +212,7 @@ function renderProfile(user) {
 function renderFavorites() {
     const list = document.getElementById("favoritesList");
     const favorites = getFavorites();
+
     document.getElementById("favoritesCount").textContent = favorites.length;
     list.textContent = "";
 
@@ -170,28 +220,35 @@ function renderFavorites() {
         list.innerHTML =
             '<div class="empty-box"><i class="bi bi-heart"></i>' +
             "<p class='mt-2 mb-3'>You have no favorite recipes yet.</p>" +
-            '<a href="recipes.html" class="btn btn-accent">Find recipes <i class="bi bi-arrow-right"></i></a></div>';
+            '<a href="recipes.html" class="btn btn-accent">' +
+            'Find recipes <i class="bi bi-arrow-right"></i></a></div>';
         return;
     }
 
     favorites.forEach(function (meal) {
         const card = document.createElement("article");
         card.className = "hover-card meal-result";
+
         card.innerHTML =
             '<div class="card-img-wrap"><img alt="" loading="lazy"></div>' +
             '<div class="card-body">' +
             "<h3></h3><p class='meal-tags mb-0'></p>" +
             '<div class="card-actions">' +
-            '<a class="btn btn-sm btn-outline-accent flex-grow-1">Open <i class="bi bi-arrow-right"></i></a>' +
-            '<button type="button" class="btn btn-sm btn-outline-danger" aria-label="Remove from favorites"><i class="bi bi-trash"></i></button>' +
+            '<a class="btn btn-sm btn-outline-accent flex-grow-1">' +
+            'Open <i class="bi bi-arrow-right"></i></a>' +
+            '<button type="button" class="btn btn-sm btn-outline-danger" ' +
+            'aria-label="Remove from favorites">' +
+            '<i class="bi bi-trash"></i></button>' +
             "</div></div>";
 
-        // textContent is used for data, so no HTML from storage is executed
         card.querySelector("img").src = meal.thumb;
         card.querySelector("img").alt = meal.name;
         card.querySelector("h3").textContent = meal.name;
-        card.querySelector(".meal-tags").textContent = meal.category || "Saved recipe";
-        card.querySelector("a").href = "recipes.html?meal=" + encodeURIComponent(meal.id);
+        card.querySelector(".meal-tags").textContent =
+            meal.category || "Saved recipe";
+
+        card.querySelector("a").href =
+            "recipes.html?meal=" + encodeURIComponent(meal.id);
 
         card.querySelector("button").addEventListener("click", function () {
             removeFavorite(meal.id);

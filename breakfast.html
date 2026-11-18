@@ -1,184 +1,131 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Fluffy kefir pancakes: ingredients, steps and tips. A simple recipe from Simple Recipes.">
-    <title>Breakfast - Simple Recipes</title>
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%B3%3C/text%3E%3C/svg%3E">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-
-    <!-- Applies the saved light/dark theme before the page is drawn -->
-    <script src="js/theme-init.js"></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Fluffy kefir pancakes: ingredients, steps and tips. A simple recipe from Simple Recipes." name="description"/>
+<title>Breakfast - Simple Recipes</title>
+<link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%B3%3C/text%3E%3C/svg%3E" rel="icon"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+<link href="css/style.css" rel="stylesheet"/>
+<!-- Applies the saved light/dark theme before the page is drawn -->
+<script src="js/theme-init.js"></script>
 </head>
-
 <body>
-
 <div class="page-grid">
+<header class="site-header">
+<nav aria-label="Main navigation" class="navbar navbar-expand-lg">
+<div class="container-fluid p-0">
+<a class="logo-link me-3" href="index.html">
+<span aria-hidden="true" class="logo"><i class="bi bi-egg-fried"></i></span>
+<span class="site-name">Simple Recipes</span>
+</a>
+<!-- Theme switch stays visible on mobile, outside the collapsed menu -->
+<button aria-label="Switch to dark mode" class="theme-toggle ms-auto order-lg-last ms-lg-2" id="themeToggle" type="button">
+<i class="bi bi-moon-stars"></i>
+</button>
+<button aria-controls="siteNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler ms-2" data-bs-target="#siteNav" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="siteNav">
+<ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+<li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house"></i> Home</a></li>
 
-    <header class="site-header">
-        <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
-            <div class="container-fluid p-0">
 
-                <a href="index.html" class="logo-link me-3">
-                    <span class="logo" aria-hidden="true"><i class="bi bi-egg-fried"></i></span>
-                    <span class="site-name">Simple Recipes</span>
-                </a>
-
-                <!-- Theme switch stays visible on mobile, outside the collapsed menu -->
-                <button type="button" id="themeToggle" class="theme-toggle ms-auto order-lg-last ms-lg-2" aria-label="Switch to dark mode">
-                    <i class="bi bi-moon-stars"></i>
-                </button>
-
-                <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#siteNav"
-                        aria-controls="siteNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="siteNav">
-                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
-                        <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house"></i> Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="recipes.html"><i class="bi bi-search"></i> Recipes</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-journal-bookmark"></i> Meals
-                            </a>
-                            <ul class="dropdown-menu">
-                        <li><a class="dropdown-item active" href="breakfast.html"><i class="bi bi-cup-hot"></i> Breakfast</a></li>
-                        <li><a class="dropdown-item" href="lunch.html"><i class="bi bi-egg-fried"></i> Lunch</a></li>
-                        <li><a class="dropdown-item" href="dinner.html"><i class="bi bi-fire"></i> Dinner</a></li>
-                        <li><a class="dropdown-item" href="dessert.html"><i class="bi bi-cake2"></i> Desserts</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="about.html"><i class="bi bi-people"></i> About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contact.html"><i class="bi bi-envelope"></i> Contact</a></li>
-                    </ul>
-
-                    <div class="header-actions ms-lg-3">
-                        <div class="auth-links" data-auth="guest">
-                            <a href="login.html" class="btn btn-sm btn-outline-accent">Log in</a>
-                            <a href="signup.html" class="btn btn-sm btn-accent">Sign up</a>
-                        </div>
-                        <div class="auth-links" data-auth="user" hidden>
-                            <a href="profile.html" class="btn btn-sm btn-outline-accent user-chip">
-                                <i class="bi bi-person-circle"></i> <span data-user-name>Profile</span>
-                            </a>
-                            <button type="button" class="btn btn-sm btn-accent" data-action="logout">
-                                <i class="bi bi-box-arrow-right"></i> Log out
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </nav>
-    </header>
-
-    <aside class="sidebar" aria-label="Recipe categories">
-        <h3>Categories</h3>
-        <ul class="sidebar-links">
-            <li><a href="recipes.html"><i class="bi bi-grid"></i> All recipes</a></li>
-            <li><a href="breakfast.html" class="active" aria-current="page"><i class="bi bi-cup-hot"></i> Breakfast</a></li>
-            <li><a href="lunch.html"><i class="bi bi-egg-fried"></i> Lunch</a></li>
-            <li><a href="dinner.html"><i class="bi bi-fire"></i> Dinner</a></li>
-            <li><a href="dessert.html"><i class="bi bi-cake2"></i> Desserts</a></li>
-        </ul>
-        <div class="sidebar-tip">
-            <h4><i class="bi bi-lightbulb"></i> Chef's tip</h4>
-            <p>Warm kefir slightly before mixing - the pancakes will rise higher.</p>
-        </div>
-    </aside>
-
-    <main class="site-main">
-        <section class="recipe-hero">
-            <div>
-                <p class="day-greeting mb-2"><i class="bi bi-bookmark-star"></i> <span>Breakfast recipe</span></p>
-                <h1 class="text-start">Fluffy kefir pancakes</h1>
-                <p class="hero-lead ms-0">Soft and fluffy pancakes that are ready in 20 minutes. A perfect start to your morning.</p>
-                <ul class="recipe-meta">
-                <li><i class="bi bi-clock"></i> 20 min</li>
-                <li><i class="bi bi-people"></i> 4 servings</li>
-                <li><i class="bi bi-bar-chart"></i> Easy</li>
-                </ul>
-                <a href="recipes.html?category=Breakfast" class="btn btn-outline-accent">More breakfast ideas <i class="bi bi-arrow-right"></i></a>
-            </div>
-            <img src="https://avatars.dzeninfra.ru/get-zen_doc/8225917/pub_63f5fe0c5b2bea22b7c1d975_63f5fe29593b986e4c30770b/scale_1200" alt="Stack of fluffy kefir pancakes">
-        </section>
-
-        <div class="page-search mt-5">
-            <div class="input-group">
-                <span class="input-group-text"><i class="bi bi-search"></i></span>
-                <input type="text" id="pageSearch" class="form-control" placeholder="Find a word on this page, e.g. kefir" aria-label="Search on this page">
-            </div>
-            <span id="searchResult" class="search-result" aria-live="polite"></span>
-        </div>
-
-        <div class="row g-4 mt-1">
-            <div class="col-lg-5">
-                <div class="recipe-box">
-                    <h3><i class="bi bi-basket"></i> Ingredients</h3>
-                    <button type="button" class="btn btn-sm btn-outline-accent copy-btn" data-copy-target="ingredientsList">
-                        <i class="bi bi-clipboard"></i> Copy list
-                    </button>
-                    <ul id="ingredientsList" class="ingredients-list" data-searchable>
-                        <li>Kefir - 250 ml</li>
-                        <li>Flour - 200 g</li>
-                        <li>Eggs - 2 pieces</li>
-                        <li>Sugar - 2 tablespoons</li>
-                        <li>Baking soda - 1 teaspoon</li>
-                        <li>Salt - a pinch</li>
-                        <li>Vegetable oil - for frying</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-7">
-                <div class="recipe-box">
-                    <h3><i class="bi bi-list-ol"></i> Instructions</h3>
-                    <ol class="steps-list" data-searchable>
-                        <li>Mix the kefir, eggs, sugar and salt in a bowl.</li>
-                        <li>Add the flour and baking soda and mix until smooth.</li>
-                        <li>Heat a frying pan and add a small amount of oil.</li>
-                        <li>Pour small portions of the batter into the pan.</li>
-                        <li>Cook the pancakes on both sides until golden brown.</li>
-                        <li>Serve warm with your favorite toppings.</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-
-        <section class="page-section">
-            <h2 class="text-start"><i class="bi bi-question-circle"></i> FAQ</h2>
-            <div class="faq-item">
-                <button type="button" class="faq-question" aria-expanded="false"><span>Can I use milk instead of kefir?</span> <i class="bi bi-chevron-down"></i></button>
-                <div class="faq-answer"><p>Yes. Add a spoon of lemon juice to the milk and wait 10 minutes.</p></div>
-            </div>
-            <div class="faq-item">
-                <button type="button" class="faq-question" aria-expanded="false"><span>Why are my pancakes flat?</span> <i class="bi bi-chevron-down"></i></button>
-                <div class="faq-answer"><p>The baking soda may be old, or the batter was mixed too long.</p></div>
-            </div>
-            <div class="faq-item">
-                <button type="button" class="faq-question" aria-expanded="false"><span>What toppings are good?</span> <i class="bi bi-chevron-down"></i></button>
-                <div class="faq-answer"><p>Honey, sour cream, berries or jam.</p></div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <div class="footer-inner">
-            <p>&copy; <span data-year>2026</span> Simple Recipes &middot; Developer team: Zangar, Iliyas, Bekarys</p>
-            <ul class="footer-links">
-                <li><a href="recipes.html">Recipes</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </div>
-    </footer>
-
+<li class="nav-item"><a class="nav-link" href="about.html"><i class="bi bi-people"></i> About</a></li>
+<li class="nav-item"><a class="nav-link" href="contact.html"><i class="bi bi-envelope"></i> Contact</a></li>
+</ul>
+<div class="header-actions ms-lg-3">
+<div class="auth-links" data-auth="guest">
+<a class="btn btn-sm btn-outline-accent" href="login.html">Log in</a>
+<a class="btn btn-sm btn-accent" href="signup.html">Sign up</a>
 </div>
-
+<div class="auth-links" data-auth="user" hidden="">
+<a class="btn btn-sm btn-outline-accent user-chip" href="profile.html">
+<i class="bi bi-person-circle"></i> <span data-user-name="">Profile</span>
+</a>
+<button class="btn btn-sm btn-accent" data-action="logout" type="button">
+<i class="bi bi-box-arrow-right"></i> Log out
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</nav>
+</header>
+<aside aria-label="Recipe categories" class="sidebar">
+<h3>Categories</h3>
+<ul class="sidebar-links">
+<li><a href="recipes.html"><i class="bi bi-grid"></i> All recipes</a></li>
+<li><a aria-current="page" class="active" href="breakfast.html"><i class="bi bi-cup-hot"></i> Breakfast</a></li>
+<li><a href="lunch.html"><i class="bi bi-egg-fried"></i> Lunch</a></li>
+<li><a href="dinner.html"><i class="bi bi-fire"></i> Dinner</a></li>
+<li><a href="dessert.html"><i class="bi bi-cake2"></i> Desserts</a></li>
+</ul>
+</aside>
+<main class="site-main">
+<section class="recipe-hero">
+<div>
+<p class="day-greeting mb-2"><i class="bi bi-bookmark-star"></i> <span>Breakfast recipe</span></p>
+<h1 class="text-start">Fluffy kefir pancakes</h1>
+<p class="hero-lead ms-0">Soft and fluffy pancakes that are ready in 20 minutes. A perfect start to your morning.</p>
+<ul class="recipe-meta">
+<li><i class="bi bi-clock"></i> 20 min</li>
+<li><i class="bi bi-people"></i> 4 servings</li>
+<li><i class="bi bi-bar-chart"></i> Easy</li>
+</ul>
+<a class="btn btn-outline-accent" href="recipes.html?category=Breakfast">More breakfast ideas <i class="bi bi-arrow-right"></i></a>
+</div>
+<img alt="Stack of fluffy kefir pancakes" src="images/kitchen.jpg"/>
+</section>
+<div class="page-search mt-5">
+<div class="input-group">
+<span class="input-group-text"><i class="bi bi-search"></i></span>
+</div>
+</div>
+<div class="row g-4 mt-1">
+<div class="col-lg-5">
+<div class="recipe-box">
+<h3><i class="bi bi-basket"></i> Ingredients</h3>
+<ul class="ingredients-list" data-searchable="" id="ingredientsList">
+<li>Kefir - 250 ml</li>
+<li>Flour - 200 g</li>
+<li>Eggs - 2 pieces</li>
+<li>Sugar - 2 tablespoons</li>
+<li>Baking soda - 1 teaspoon</li>
+<li>Salt - a pinch</li>
+<li>Vegetable oil - for frying</li>
+</ul>
+</div>
+</div>
+<div class="col-lg-7">
+<div class="recipe-box">
+<h3><i class="bi bi-list-ol"></i> Instructions</h3>
+<ol class="steps-list" data-searchable="">
+<li>Mix the kefir, eggs, sugar and salt in a bowl.</li>
+<li>Add the flour and baking soda and mix until smooth.</li>
+<li>Heat a frying pan and add a small amount of oil.</li>
+<li>Pour small portions of the batter into the pan.</li>
+<li>Cook the pancakes on both sides until golden brown.</li>
+<li>Serve warm with your favorite toppings.</li>
+</ol>
+</div>
+</div>
+</div>
+</main>
+<footer class="site-footer">
+<div class="footer-inner">
+<p>© <span data-year="">2026</span> Simple Recipes · Developer team: Zangar, Iliyas, Bekarys</p>
+<ul class="footer-links">
+<li><a href="recipes.html">Recipes</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+</div>
+</footer>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/storage.js"></script>
 <script src="js/script.js"></script>

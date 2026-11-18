@@ -93,7 +93,12 @@ function toggleFavorite(meal) {
         return false;
     }
 
-    favorites.push({ id: meal.id, name: meal.name, thumb: meal.thumb, category: meal.category || "" });
+    favorites.push({
+        id: meal.id,
+        name: meal.name,
+        thumb: meal.thumb,
+        category: meal.category || ""
+    });
     writeJSON(favoritesKey(), favorites);
     return true;
 }

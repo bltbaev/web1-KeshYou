@@ -9,8 +9,8 @@ const contactForm = document.getElementById("contactForm");
 if (contactForm) {
     const contactMessage = document.getElementById("contactMessage");
 
-    // A logged-in user does not have to type the same data again
     const user = getCurrentUser();
+
     if (user) {
         document.getElementById("cName").value = user.name;
         document.getElementById("cEmail").value = user.email;
@@ -22,7 +22,10 @@ if (contactForm) {
         cEmail: [Validators.required("email"), Validators.email],
         cPhone: [Validators.required("phone number"), Validators.phone],
         cTopic: [Validators.selected("Please choose a topic.")],
-        cMessage: [Validators.required("message"), Validators.minLength(10, "Message")]
+        cMessage: [
+            Validators.required("message"),
+            Validators.minLength(10, "Message")
+        ]
     });
 
     contactForm.addEventListener("submit", function (event) {
@@ -30,7 +33,11 @@ if (contactForm) {
         hideFormMessage(contactMessage);
 
         if (!validateContact()) {
-            showFormMessage(contactMessage, "Please fix the highlighted fields.", "error");
+            showFormMessage(
+                contactMessage,
+                "Please fix the highlighted fields.",
+                "error"
+            );
             return;
         }
 
@@ -46,18 +53,23 @@ if (contactForm) {
         const submitButton = contactForm.querySelector("button[type='submit']");
         setButtonLoading(submitButton, true, "Sending...");
 
-        // Short pause to imitate sending the message to a server
         setTimeout(function () {
             const messages = readJSON(STORAGE_KEYS.messages, []);
             messages.push(message);
             writeJSON(STORAGE_KEYS.messages, messages);
 
             setButtonLoading(submitButton, false);
-            showFormMessage(contactMessage, "Thank you, " + message.name + "! The chef will answer within 2 days.", "success");
 
-            // Clear only the question, keep the contact details
+            showFormMessage(
+                contactMessage,
+                "Thank you, " + message.name +
+                "! The chef will answer within 2 days.",
+                "success"
+            );
+
             document.getElementById("cTopic").value = "";
             document.getElementById("cMessage").value = "";
+
             ["cTopic", "cMessage"].forEach(function (id) {
                 const input = document.getElementById(id);
                 input.classList.remove("is-valid");
